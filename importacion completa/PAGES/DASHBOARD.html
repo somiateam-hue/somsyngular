@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOM ATLAS | Admin</title>
+    <!-- Reusing main styles -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            background: #0a0a0f;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: #0a0a0f;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        th {
+            color: var(--text-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Auth -->
+    <div id="auth-screen" class="auth-overlay">
+        <h2>🔒 Acceso Restringido</h2>
+        <input type="password" id="admin-pass" placeholder="Contraseña..."
+            style="padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; outline: none;">
+        <button onclick="checkAuth()" class="btn btn-primary">Entrar</button>
+        <p id="auth-error" style="color: red; font-size: 0.8rem; display: none;">Contraseña incorrecta</p>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="container" style="display: none; padding-top: 4rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <h1>Admin <span class="text-gradient">Dashboard</span></h1>
+            <div style="display: flex; gap: 1rem;">
+                <button onclick="exportCSV()" class="btn btn-ghost">Exportar CSV</button>
+                <button onclick="clearData()" class="btn"
+                    style="background: rgba(239, 68, 68, 0.2); color: #f87171;">Borrar Todo</button>
+                <button onclick="logout()" class="btn btn-ghost">Salir</button>
+            </div>
+        </div>
+
+        <!-- Metrics -->
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+            <div class="glass" style="padding: 1.5rem; border-radius: 12px;">
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">Total Leads</span>
+                <h3 id="total-leads" style="font-size: 2.5rem; margin-top: 0.5rem;">0</h3>
+            </div>
+            <div class="glass" style="padding: 1.5rem; border-radius: 12px;">
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">Hoy</span>
+                <h3 id="today-leads" style="font-size: 2.5rem; margin-top: 0.5rem;">0</h3>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="glass" style="padding: 2rem; border-radius: 16px;">
+            <h3 style="margin-bottom: 1.5rem;">Mensajes Recibidos</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Mensaje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table">
+                        <!-- Filled by JS -->
+                    </tbody>
+                </table>
+            </div>
+            <p id="no-data" style="text-align: center; color: var(--text-secondary); margin-top: 2rem; display: none;">
+                No hay mensajes aún.</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple "Hidden" Auth
+        function checkAuth() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === 'somatlas2024') {
+                document.getElementById('auth-screen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadLeads();
+            } else {
+                document.getElementById('auth-error').style.display = 'block';
+            }
+        }
+
+        // Add 'Enter' key support
+        document.getElementById('admin-pass').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkAuth();
+        });
+
+        function logout() {
+            location.reload();
+        }
+
+        function loadLeads() {
+            const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+
+            document.getElementById('total-leads').innerText = leads.length;
+
+            // Count today's leads
+            const today = new Date().toDateString();
+            const todayCount = leads.filter(l => new Date(l.submitted_at).toDateString() === today).length;
+            document.getElementById('today-leads').innerText = todayCount;
+
+            const tbody = document.getElementById('leads-table');
+            tbody.innerHTML = '';
+
+            if (leads.length === 0) {
+                document.getElementById('no-data').style.display = 'block';
+                return;
+            }
+
+            document.getElementById('no-data').style.display = 'none';
+
+            leads.forEach(lead => {
+                const date = new Date(lead.submitted_at).toLocaleString();
+                const row = `
+                    <tr>
+                        <td style="white-space: nowrap; color: #94a3b8;">${date}</td>
+                        <td style="font-weight: 500; color: white;">${lead.name}</td>
+                        <td>${lead.email}</td>
+                        <td style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${lead.message}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function clearData() {
+            if (confirm('¿Seguro que quieres borrar todos los mensajes?')) {
+                localStorage.removeItem('som_atlas_leads');
+                loadLeads();
+            }
+        }
+
+        function exportCSV() {
+            const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+            if (leads.length === 0) return alert('No hay datos para exportar');
+
+            let csv = 'Fecha,Nombre,Email,Mensaje\n';
+            leads.forEach(l => {
+                csv += `"${l.submitted_at}","${l.name}","${l.email}","${l.message.replace(/"/g, '""')}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'leads_som_atlas.csv';
+            a.click();
+        }
+    </script>
+</body>
+
+</html>

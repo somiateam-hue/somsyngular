@@ -1,0 +1,2284 @@
+<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>SOM ATLAS | Automatización Inteligente con IA</title><meta name='description' content='Transformamos tu negocio con Inteligencia Artificial y Automatización. Soluciones a medida para escalar resultados.'><meta name='keywords' content='IA, Automatización, Chatbots, Desarrollo Web, Transformación Digital, SOM ATLAS'><meta name='author' content='SOM ATLAS SOLUTION'><meta property='og:type' content='website'><meta property='og:url' content='https://somsyngular.com/'><meta property='og:title' content='SOM ATLAS SOLUTION | IA & Automatización'><meta property='og:description' content='Transformamos tu negocio con Inteligencia Artificial y Automatización. Soluciones a medida para escalar resultados.'><meta property='og:image' content='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'><link rel='icon' href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>'><style>/* SOM ATLAS SOLUTION - Global Design System */
+
+:root {
+    /* Colors - Dark Theme Core */
+    --bg-dark: #0a0a0f;
+    --bg-darker: #050507;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-glass: rgba(10, 10, 15, 0.7);
+
+    /* Brand Gradients */
+    --gradient-primary: linear-gradient(135deg, #00C6FF 0%, #0072FF 100%);
+    --gradient-text: linear-gradient(90deg, #FFFFFF 0%, #00C6FF 50%, #0072FF 100%);
+    --gradient-glow: radial-gradient(circle at center, rgba(0, 198, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+
+    /* Typography */
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --text-primary: #FFFFFF;
+    --text-secondary: #94A3B8;
+    --text-accent: #38bdf8;
+
+    /* Spacing & Layout */
+    --container-width: 1200px;
+    --header-height: 80px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    /* Prevent text cursor behavior */
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Typography Utilities */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Layout Utilities */
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.section {
+    padding: 5rem 0;
+}
+
+/* Component: Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 114, 255, 0.5);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Effects */
+.glass {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glow-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--gradient-glow);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* --- INTERACTIVE STATES --- */
+.tab-active {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-left-color: var(--text-accent) !important;
+    opacity: 1 !important;
+}
+
+.filter-active {
+    background: var(--gradient-primary) !important;
+    color: white !important;
+    border-color: transparent !important;
+}
+
+/* --- MOBILE MENU --- */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none !important;
+        /* Hidden on mobile initially */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-darker);
+        flex-direction: column;
+        padding: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links.nav-open {
+        display: flex !important;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 3rem !important;
+    }
+}</style></head><body style='background-color: #0a0a0f;'><nav class="glass" style="position: fixed; top: 0; width: 100%; z-index: 1000; padding: 1rem 0;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo">
+            <a href="#hero" style="text-decoration: none; color: white;">
+                <span style="font-weight: 800; font-size: 1.25rem;">
+                    <span
+                        style="background: var(--gradient-primary); padding: 4px 8px; border-radius: 4px; color: white;">S</span>
+                    SOM ATLAS <span style="color: var(--text-accent);">SOLUTION</span>
+                </span>
+            </a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')">
+            ☰
+        </button>
+
+        <div class="nav-links" style="display: flex; gap: 2rem; align-items: center;">
+            <a href="#hero" style="color: var(--text-primary); text-decoration: none; font-size: 0.9rem;">Inicio</a>
+            <a href="#services"
+                style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Servicios</a>
+            <a href="#what-we-do" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Qué
+                hacemos</a>
+            <a href="#portfolio"
+                style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Portafolio</a>
+            <a href="#team" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Equipo</a>
+            <a href="#contact"
+                style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Contacto</a>
+            <a href="#contact" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1.2rem;">Empezar
+                ahora</a>
+        </div>
+    </div>
+</nav><section id="hero" class="section"
+    style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden;">
+
+    <!-- Real Background Image with Overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+            style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;">
+    </div>
+    <div
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, var(--bg-dark) 0%, transparent 50%, var(--bg-dark) 100%); z-index: -1;">
+    </div>
+
+    <div class="container reveal active">
+        <!-- Badge -->
+        <div class="glass"
+            style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: var(--radius-full); margin-bottom: 2rem;">
+            <span style="color: var(--text-accent);">✨</span>
+            <span style="font-size: 0.9rem; color: var(--text-secondary);">Automatización inteligente con IA</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 style="font-size: 5rem; margin-bottom: 1.5rem; line-height: 1.1; text-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            SOM IA <br>
+            <span class="text-gradient">ATLAS</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p
+            style="font-size: 1.25rem; color: #e2e8f0; max-width: 600px; margin: 0 auto 3rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+            Transformamos tu negocio con soluciones de IA que automatizan, optimizan y potencian resultados.
+            <br>
+            <span style="color: var(--text-accent); font-weight: 600; margin-top: 1rem; display: block;">"Vamos a por
+                todas"</span>
+        </p>
+
+        <!-- CTAs -->
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#contact" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                Solicita tu demo &rarr;
+            </a>
+            <div
+                style="background: rgba(255,255,255,0.9); border-radius: var(--radius-full); padding: 4px; display: flex; align-items: center;">
+                <input type="email" placeholder="Tu email de trabajo"
+                    style="border: none; padding: 0.8rem 1.5rem; border-radius: var(--radius-full); outline: none; width: 250px; background: transparent; color: #000;">
+            </div>
+        </div>
+    </div>
+</section><section class="section" style="padding: 3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <div class="container">
+        <p
+            style="text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7;">
+            Tecnología integrada con
+        </p>
+        <div
+            style="display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; align-items: center; opacity: 0.5;">
+
+            <h3 style="color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin: 0; filter: grayscale(100%); transition: all 0.3s;"
+                onmouseenter="this.style.opacity='1'; this.style.filter='none'; this.style.color='#fff'"
+                onmouseleave="this.style.opacity='1'; this.style.filter='grayscale(100%)'; this.style.color='white'">
+                OpenAI
+            </h3>
+
+            <h3 style="color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin: 0; filter: grayscale(100%); transition: all 0.3s;"
+                onmouseenter="this.style.opacity='1'; this.style.filter='none'; this.style.color='#fff'"
+                onmouseleave="this.style.opacity='1'; this.style.filter='grayscale(100%)'; this.style.color='white'">
+                Google Cloud
+            </h3>
+
+            <h3 style="color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin: 0; filter: grayscale(100%); transition: all 0.3s;"
+                onmouseenter="this.style.opacity='1'; this.style.filter='none'; this.style.color='#fff'"
+                onmouseleave="this.style.opacity='1'; this.style.filter='grayscale(100%)'; this.style.color='white'">
+                Stripe
+            </h3>
+
+            <h3 style="color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin: 0; filter: grayscale(100%); transition: all 0.3s;"
+                onmouseenter="this.style.opacity='1'; this.style.filter='none'; this.style.color='#fff'"
+                onmouseleave="this.style.opacity='1'; this.style.filter='grayscale(100%)'; this.style.color='white'">
+                Meta
+            </h3>
+
+            <h3 style="color: white; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin: 0; filter: grayscale(100%); transition: all 0.3s;"
+                onmouseenter="this.style.opacity='1'; this.style.filter='none'; this.style.color='#fff'"
+                onmouseleave="this.style.opacity='1'; this.style.filter='grayscale(100%)'; this.style.color='white'">
+                Shopify
+            </h3>
+
+        </div>
+    </div>
+</section><section id="what-we-do" class="section" style="position: relative;">
+    <div class="container" style="position: relative; z-index: 1;">
+        <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; border: 1px solid var(--text-accent); padding: 4px 12px; border-radius: 20px; background: rgba(56, 189, 248, 0.1);">
+                Nuestra Tecnología
+            </span>
+            <h2 style="font-size: 3.5rem; margin-top: 1.5rem; font-weight: 800; letter-spacing: -1px;">
+                Innovación <span class="text-gradient">Sin Límites</span>
+            </h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto; font-size: 1.1rem;">
+                Desplegamos ecosistemas digitales avanzados que evolucionan con tu negocio.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;">
+            <!-- Card 1 -->
+            <div class="tech-card reveal">
+                <div class="tech-icon-box" style="background: rgba(0, 198, 255, 0.1); color: #38bdf8;">
+                    <span style="filter: drop-shadow(0 0 5px #38bdf8);">🧠</span>
+                </div>
+                <h3>Inteligencia Artificial</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Algoritmos que analizan patrones complejos y
+                    toman decisiones proactivas para escalar tu operativa.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="tech-card reveal" style="transition-delay: 100ms;">
+                <div class="tech-icon-box" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">
+                    <span style="filter: drop-shadow(0 0 5px #a855f7);">⚡</span>
+                </div>
+                <h3>Automatización Neural</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Flujos de trabajo autónomos que conectan tus
+                    herramientas y eliminan la fricción humana en procesos repetitivos.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="tech-card reveal" style="transition-delay: 200ms;">
+                <div class="tech-icon-box" style="background: rgba(34, 197, 94, 0.1); color: #4ade80;">
+                    <span style="filter: drop-shadow(0 0 5px #4ade80);">🛡️</span>
+                </div>
+                <h3>Ciberseguridad Activa</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Blindaje de nivel empresarial con
+                    encriptación de extremo a extremo y monitorización de amenazas 24/7.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="tech-card reveal" style="transition-delay: 300ms;">
+                <div class="tech-icon-box" style="background: rgba(234, 179, 8, 0.1); color: #fbbf24;">
+                    <span style="filter: drop-shadow(0 0 5px #fbbf24);">🚀</span>
+                </div>
+                <h3>Escalabilidad Infinita</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Infraestructura diseñada para crecer. Desde
+                    la primera venta hasta el millón de usuarios sin cuellos de botella.</p>
+            </div>
+        </div>
+    </div>
+</section><section id="services" class="section" style="background-color: rgba(0,0,0,0.2);">
+    <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Servicios</span>
+            <h2 style="font-size: 3rem; margin-top: 1rem;">Todo lo que tu negocio <span
+                    class="text-gradient">necesita</span></h2>
+        </div>
+
+        <div class="reveal" style="display: grid; grid-template-columns: 350px 1fr; gap: 3rem; align-items: start;">
+            <!-- Sidebar Navigation -->
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="service-tab glass tab-active" data-target="web-dev"
+                    style="padding: 1.5rem; border-radius: 12px; border-left: 3px solid transparent; background: rgba(255,255,255,0.02); cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--text-secondary);">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="2" y1="12" x2="22" y2="12" />
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 0.2rem; font-size: 1rem;">Desarrollo Web Profesional</h4>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">Webs que convierten</span>
+                    </div>
+                </div>
+                <div class="service-tab glass" data-target="chatbot"
+                    style="padding: 1.5rem; border-radius: 12px; border-left: 3px solid transparent; background: rgba(255,255,255,0.02); cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--text-secondary);">
+                            <rect x="3" y="11" width="18" height="10" rx="2" />
+                            <circle cx="12" cy="5" r="2" />
+                            <path d="M12 7v4" />
+                            <line x1="8" y1="16" x2="8" y2="16" />
+                            <line x1="16" y1="16" x2="16" y2="16" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 0.2rem; font-size: 1rem;">Chatbots Inteligentes</h4>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">Atención 24/7 con IA</span>
+                    </div>
+                </div>
+                <div class="service-tab glass" data-target="automation"
+                    style="padding: 1.5rem; border-radius: 12px; border-left: 3px solid transparent; background: rgba(255,255,255,0.02); cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--text-secondary);">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+                            <line x1="6" y1="6" x2="6.01" y2="6" />
+                            <line x1="6" y1="18" x2="6.01" y2="18" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 0.2rem; font-size: 1rem;">Automatización con IA</h4>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">Procesos sin fricción</span>
+                    </div>
+                </div>
+                <!-- New Tab 4 -->
+                <div class="service-tab glass" data-target="support"
+                    style="padding: 1.5rem; border-radius: 12px; border-left: 3px solid transparent; background: rgba(255,255,255,0.02); cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #fb923c;">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                            <path
+                                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 0.2rem; font-size: 1rem;">Atención al Cliente IA</h4>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">Soporte escalable</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area: Web Dev -->
+            <div id="web-dev" class="service-content glass"
+                style="padding: 0; border-radius: var(--radius-lg); position: relative; overflow: hidden; display: block; height: 400px;">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+                    loading="lazy" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3);">
+                <div
+                    style="position: absolute; inset: 0; padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; backdrop-filter: blur(10px);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--text-accent);">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="2" y1="12" x2="22" y2="12" />
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Desarrollo Web Profesional</h3>
+                    <p
+                        style="color: #cbd5e1; margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; line-height: 1.6;">
+                        Webs que convierten. Diseño moderno, adaptado a móviles y optimizado para que tus clientes
+                        tengan la mejor experiencia.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 500px;">
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Responsive Design
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> SEO Optimizado
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Alto Rendimiento
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> UX/UI Premium
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area: Chatbot -->
+            <div id="chatbot" class="service-content glass"
+                style="padding: 0; border-radius: var(--radius-lg); position: relative; overflow: hidden; display: none; height: 400px;">
+                <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2006&auto=format&fit=crop"
+                    loading="lazy" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3);">
+                <div
+                    style="position: absolute; inset: 0; padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; backdrop-filter: blur(10px);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--text-accent);">
+                            <rect x="3" y="11" width="18" height="10" rx="2" />
+                            <circle cx="12" cy="5" r="2" />
+                            <path d="M12 7v4" />
+                            <line x1="8" y1="16" x2="8" y2="16" />
+                            <line x1="16" y1="16" x2="16" y2="16" />
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Chatbots Inteligentes</h3>
+                    <p
+                        style="color: #cbd5e1; margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; line-height: 1.6;">
+                        Atención 24/7 con IA. Resuelve dudas frecuentes, agenda citas y cualifica leads automáticamente
+                        sin intervención humana.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 500px;">
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Disponible 24/7
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Integración WhatsApp
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Lenguaje Natural
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Captación de Leads
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area: Automation -->
+            <div id="automation" class="service-content glass"
+                style="padding: 0; border-radius: var(--radius-lg); position: relative; overflow: hidden; display: none; height: 400px;">
+                <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=1974&auto=format&fit=crop"
+                    loading="lazy" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3);">
+                <div
+                    style="position: absolute; inset: 0; padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                    <div
+                        style="background: rgba(255,255,255,0.05); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; backdrop-filter: blur(10px);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: var(--text-accent);">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+                            <line x1="6" y1="6" x2="6.01" y2="6" />
+                            <line x1="6" y1="18" x2="6.01" y2="18" />
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Automatización con IA</h3>
+                    <p
+                        style="color: #cbd5e1; margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; line-height: 1.6;">
+                        Procesos sin fricción. Elimina tareas repetitivas conectando tus apps favoritas y ahorra horas
+                        de trabajo manual.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 500px;">
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Sin Errores
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Conectividad Total
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Ahorro de Tiempo
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px;">
+                            <span style="color: var(--text-accent);">●</span> Workflows Custom
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area: Support (New) -->
+            <div id="support" class="service-content glass"
+                style="padding: 0; border-radius: var(--radius-lg); position: relative; overflow: hidden; display: none; height: 400px; background: #0a0a0f;">
+                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=2070&auto=format&fit=crop"
+                    loading="lazy" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3);">
+                <div
+                    style="position: absolute; inset: 0; padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+                    <div
+                        style="background: rgba(251, 146, 60, 0.1); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="color: #fb923c;">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                            <path
+                                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Atención al Cliente IA</h3>
+                    <p
+                        style="color: #cbd5e1; margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; line-height: 1.6;">
+                        Soluciones de atención al cliente potenciadas por IA que mejoran la satisfacción y reducen
+                        costes operativos.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 600px;">
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                            <span style="color: #fb923c;">●</span> Respuestas automáticas
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                            <span style="color: #fb923c;">●</span> Escalado inteligente
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                            <span style="color: #fb923c;">●</span> Análisis de sentimiento
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                            <span style="color: #fb923c;">●</span> Reportes detallados
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><section id="pricing" class="section">
+    <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Inversión</span>
+            <h2 style="font-size: 3rem; margin-top: 1rem;">Planes a tu <span class="text-gradient">medida</span></h2>
+        </div>
+
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start;">
+
+            <!-- Starter -->
+            <div class="glass reveal"
+                style="padding: 2.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
+                <h3 style="margin-bottom: 0.5rem; color: var(--text-secondary);">Starter</h3>
+                <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;">€950</div>
+                <ul
+                    style="list-style: none; padding: 0; margin-bottom: 2rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 1rem;">
+                    <li>✓ Landing Page Profesional</li>
+                    <li>✓ Chatbot Básico (Reglas)</li>
+                    <li>✓ Integración WhatsApp</li>
+                    <li>✓ Soporte por Email</li>
+                </ul>
+                <a href="#contact" class="btn btn-ghost" style="width: 100%; justify-content: center;">Empezar</a>
+            </div>
+
+            <!-- Pro (Featured) -->
+            <div class="glass reveal"
+                style="padding: 2.5rem; border-radius: 16px; border: 1px solid var(--text-accent); position: relative; background: rgba(0, 198, 255, 0.05); transform: scale(1.05);">
+                <div
+                    style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+                    MÁS POPULAR</div>
+                <h3 style="margin-bottom: 0.5rem; color: white;">Business AI</h3>
+                <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;">€1,850</div>
+                <ul
+                    style="list-style: none; padding: 0; margin-bottom: 2rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 1rem;">
+                    <li>✓ Web Corporativa Completa</li>
+                    <li>✓ Chatbot IA (GPT-4)</li>
+                    <li>✓ Automatización de Citas</li>
+                    <li>✓ Dashboard de Leads</li>
+                    <li>✓ Soporte Prioritario</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary" style="width: 100%; justify-content: center;">Seleccionar
+                    Plan</a>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="glass reveal"
+                style="padding: 2.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
+                <h3 style="margin-bottom: 0.5rem; color: var(--text-secondary);">Enterprise</h3>
+                <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;">A Medida</div>
+                <ul
+                    style="list-style: none; padding: 0; margin-bottom: 2rem; color: #e2e8f0; display: flex; flex-direction: column; gap: 1rem;">
+                    <li>✓ Desarrollo Full Stack Custom</li>
+                    <li>✓ Automatización Compleja (n8n)</li>
+                    <li>✓ AI Agents Múltiples</li>
+                    <li>✓ Integración CRM & ERP</li>
+                    <li>✓ Consultoría Estratégica</li>
+                </ul>
+                <a href="#contact" class="btn btn-ghost" style="width: 100%; justify-content: center;">Contactar</a>
+            </div>
+
+        </div>
+    </div>
+</section><section class="section" style="background: linear-gradient(to top, var(--bg-dark), var(--bg-darker));">
+    <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 3rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Calculadora
+                ROI</span>
+            <h2 style="font-size: 3rem; margin-top: 1rem;">¿Cuánto puedes <span class="text-gradient">ahorrar</span>?
+            </h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto;">Descubre el impacto económico
+                de implementar IA en tu empresa.</p>
+        </div>
+
+        <div class="glass reveal"
+            style="max-width: 800px; margin: 0 auto; padding: 2.5rem; border-radius: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+
+            <!-- Inputs -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div>
+                    <label
+                        style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Empleados
+                        en tareas repetitivas</label>
+                    <input type="number" id="roi-employees" value="5" min="1"
+                        style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none;">
+                </div>
+                <div>
+                    <label
+                        style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Salario
+                        Medio Anual (€)</label>
+                    <input type="number" id="roi-salary" value="25000" step="1000"
+                        style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none;">
+                </div>
+                <div>
+                    <label
+                        style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">%
+                        Automatizable (Estimado)</label>
+                    <input type="range" id="roi-percent" value="30" min="10" max="80"
+                        style="width: 100%; accent-color: var(--text-accent);">
+                    <div style="text-align: right; color: var(--text-accent); font-weight: 600;"
+                        id="roi-percent-display">30%</div>
+                </div>
+            </div>
+
+            <!-- Result -->
+            <div
+                style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem; text-align: center;">
+                <span style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Ahorro Potencial
+                    Anual</span>
+                <h3 id="roi-total" style="font-size: 3rem; color: #4ade80; margin: 0;">€37,500</h3>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem;">*Cálculo estimativo basado
+                    en eficiencia operativa.</p>
+                <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem; font-size: 0.9rem;">Quiero este
+                    ahorro</a>
+            </div>
+
+        </div>
+    </div>
+</section><section id="portfolio" class="section">
+    <div class="container">
+        <!-- Header -->
+        <div class="reveal" style="text-align: center; margin-bottom: 3rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Portafolio</span>
+            <h2 style="font-size: 3.5rem; margin-top: 1rem; line-height: 1.1;">Proyectos que <span
+                    class="text-gradient">transforman negocios</span></h2>
+            <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 1.1rem;">Soluciones reales
+                desarrolladas con IA para clientes de diversos sectores.</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="reveal"
+            style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 4rem;">
+            <button class="filter-btn btn filter-active" data-filter="all"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Todos</button>
+            <button class="filter-btn btn btn-ghost" data-filter="support"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Atención
+                al Cliente</button>
+            <button class="filter-btn btn btn-ghost" data-filter="ecommerce"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">E-commerce</button>
+            <button class="filter-btn btn btn-ghost" data-filter="marketing"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Marketing</button>
+            <button class="filter-btn btn btn-ghost" data-filter="consulting"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Consultoría</button>
+            <button class="filter-btn btn btn-ghost" data-filter="social"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Redes
+                Sociales</button>
+            <button class="filter-btn btn btn-ghost" data-filter="finance"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Finanzas</button>
+            <button class="filter-btn btn btn-ghost" data-filter="travel"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Viajes</button>
+            <button class="filter-btn btn btn-ghost" data-filter="saas"
+                style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">SaaS</button>
+        </div>
+
+        <!-- Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2.5rem;">
+
+            <!-- 1. Chatbot Radulits -->
+            <div class="glass project-card reveal hover-lift" data-category="support"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop"
+                        loading="lazy" alt="AI Robot" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Atención
+                            al Cliente</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Chatbot Radulits</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Chatbot inteligente con IA para atención al cliente 24/7. Interfaz conversacional que resuelve
+                        consultas complejas.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">IA</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Chatbot</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Iman Evolution -->
+            <div class="glass project-card reveal hover-lift" data-category="ecommerce"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+                        loading="lazy" alt="Analytics Dashboard" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">E-commerce</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Iman Evolution Mentor</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Plataforma de análisis y optimización para e-commerce. Dashboard con métricas en tiempo real.
+                    </p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Analytics</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Growth</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. SEO Scraper Pro -->
+            <div class="glass project-card reveal hover-lift" data-category="marketing"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 100ms;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
+                        loading="lazy" alt="Code Matrix" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Marketing
+                            Técnico</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">SEO Scraper Pro</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Herramienta avanzada de análisis SEO y web scraping. Extrae datos precisos para optimización.
+                    </p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">SEO</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Data</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Kit Digital Assistant -->
+            <div class="glass project-card reveal hover-lift" data-category="consulting"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop"
+                        loading="lazy" alt="Business Consulting" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Consultoría</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Kit Digital Assistant</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Asistente virtual para gestión del Kit Digital. Automatiza solicitudes y burocracia.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Legal</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Auto</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Hazme Viral GPT -->
+            <div class="glass project-card reveal hover-lift" data-category="social"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?q=80&w=1974&auto=format&fit=crop"
+                        loading="lazy" alt="Social Media Phone" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Redes
+                            Sociales</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Hazme Viral GPT</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Generador de contenido viral. Crea scripts para TikTok e Instagram que maximizan el engagement.
+                    </p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Viral</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. PhiWallet Gold -->
+            <div class="glass project-card reveal hover-lift" data-category="finance"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 100ms;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1974&auto=format&fit=crop"
+                        loading="lazy" alt="Bitcoin Gold" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Finanzas</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">PhiWallet Gold Advisor</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Asesor financiero para criptomonedas y oro. Predicciones de mercado basadas en IA.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Crypto</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Finance</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Japón Guide GPT -->
+            <div class="glass project-card reveal hover-lift" data-category="travel"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop"
+                        loading="lazy" alt="Japan Kyoto" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Viajes</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Japón Guide GPT</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Guía turística inteligente para viajar por Japón. Recomendaciones personalizadas y rutas.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Viajes</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Japan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Turnito -->
+            <div class="glass project-card reveal hover-lift" data-category="saas"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop"
+                        loading="lazy" alt="Restaurant Queue" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Turnito</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Gestión de turnos y colas virtuales para restaurantes. Mejora la experiencia del comensal.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Restaurante</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Gestión</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Webs Profesionales -->
+            <div class="glass project-card reveal hover-lift" data-category="marketing"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 100ms;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop"
+                        loading="lazy" alt="Web Design" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Desarrollo
+                            Web</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Webs Profesionales</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Diseño y desarrollo de sitios web modernos, responsivos y optimizados para conversión.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">UX/UI</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Code</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. DentistiQ -->
+            <div class="glass project-card reveal hover-lift" data-category="saas"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop"
+                        loading="lazy" alt="Dental Clinic" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">DentistiQ</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Plataforma completa para gestión de clínicas dentales. Expedientes digitales y agenda.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Salud</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Clinic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. TallerPro -->
+            <div class="glass project-card reveal hover-lift" data-category="saas"
+                style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
+                <div style="height: 220px; position: relative; overflow: hidden;">
+                    <img src="../assets/img/Taller.jpg" loading="lazy" alt="Car Mechanic Workshop"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: var(--text-accent);">●</span>
+                        <span
+                            style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
+                    </div>
+                    <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">TallerPro</h3>
+                    <p
+                        style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                        Software de gestión para talleres mecánicos. Control de inventario y facturación.</p>
+                    <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Taller</span>
+                        <span
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Gestión</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="glass"
+        style="position: fixed; inset: 0; margin: auto; width: 90%; max-width: 800px; height: fit-content; max-height: 90vh; overflow-y: auto; z-index: 1000; display: none; flex-direction: column; border-radius: var(--radius-lg); padding: 0; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+
+        <div style="position: relative; height: 300px;">
+            <img id="modal-img" src="" style="width: 100%; height: 100%; object-fit: cover;">
+            <button id="close-modal" class="glass"
+                style="position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: white;">✕</button>
+        </div>
+
+        <div style="padding: 2.5rem;">
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;" id="modal-tags">
+                <!-- Tags injected here -->
+            </div>
+
+            <h3 id="modal-title" style="font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.1;">Title</h3>
+
+            <p id="modal-desc"
+                style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2.5rem;">
+                Description
+            </p>
+
+            <a href="#contact" id="modal-cta" class="btn btn-primary"
+                onclick="document.getElementById('project-modal').style.display='none'">
+                Solicitar Presupuesto Similar
+            </a>
+        </div>
+    </div>
+
+    <!-- Backdrop -->
+    <div id="modal-backdrop"
+        style="position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 999; display: none;">
+    </div>
+
+</section><section class="section" style="background: linear-gradient(to top, var(--bg-darker), transparent);">
+    <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Testimonios</span>
+            <h2 style="font-size: 3rem; margin-top: 1rem;">Lo que dicen de <span class="text-gradient">nosotros</span>
+            </h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+            <!-- Review 1 -->
+            <div class="glass reveal" style="padding: 2rem; border-radius: 16px;">
+                <div style="color: #fbbf24; margin-bottom: 1rem;">★★★★★</div>
+                <p style="color: #e2e8f0; font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    "Implementar el chatbot de IA en nuestra clínica duplicó la captación de pacientes en el primer mes.
+                    Increíble servicio."
+                </p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                        DR</div>
+                    <div>
+                        <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Dr. Ricardo M.</h4>
+                        <span style="color: var(--text-secondary); font-size: 0.85rem;">CEO, DentistiQ Clients</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="glass reveal" style="padding: 2rem; border-radius: 16px; transition-delay: 100ms;">
+                <div style="color: #fbbf24; margin-bottom: 1rem;">★★★★★</div>
+                <p style="color: #e2e8f0; font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    "La automatización de nuestros procesos internos nos ahorra más de 20 horas semanales. El equipo de
+                    SOM ATLAS entendió todo a la perfección."
+                </p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                        AG</div>
+                    <div>
+                        <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Ana García</h4>
+                        <span style="color: var(--text-secondary); font-size: 0.85rem;">Directora, TallerPro</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="glass reveal" style="padding: 2rem; border-radius: 16px; transition-delay: 200ms;">
+                <div style="color: #fbbf24; margin-bottom: 1rem;">★★★★★</div>
+                <p style="color: #e2e8f0; font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    "Su experiencia en SEO técnico y desarrollo web nos posicionó líderes en nuestro nicho en tiempo
+                    récord. Altamente recomendados."
+                </p>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div
+                        style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                        JP</div>
+                    <div>
+                        <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Javier Pérez</h4>
+                        <span style="color: var(--text-secondary); font-size: 0.85rem;">Marketing, Iman Evo</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><section class="section" style="background: rgba(0,0,0,0.2);">
+    <div class="container" style="max-width: 800px;">
+        <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Dudas</span>
+            <h2 style="font-size: 3rem; margin-top: 1rem;">Preguntas <span class="text-gradient">Frecuentes</span></h2>
+        </div>
+
+        <div class="reveal" style="display: flex; flex-direction: column; gap: 1rem;">
+
+            <!-- Q1 -->
+            <div class="glass faq-item" style="border-radius: 12px; overflow: hidden; cursor: pointer;">
+                <div class="faq-header"
+                    style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <h4 style="margin: 0; font-size: 1.1rem;">¿Cuánto tardan en entregar un proyecto?</h4>
+                    <span style="font-size: 1.5rem; color: var(--text-accent);">+</span>
+                </div>
+                <div class="faq-body"
+                    style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-secondary);">
+                    <p style="padding-bottom: 1.5rem;">Depende de la complejidad. Una web corporativa estándar toma 2-3
+                        semanas, mientras que integraciones complejas de IA pueden requerir 4-6 semanas.</p>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="glass faq-item" style="border-radius: 12px; overflow: hidden; cursor: pointer;">
+                <div class="faq-header"
+                    style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <h4 style="margin: 0; font-size: 1.1rem;">¿El chatbot responde a cualquier hora?</h4>
+                    <span style="font-size: 1.5rem; color: var(--text-accent);">+</span>
+                </div>
+                <div class="faq-body"
+                    style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-secondary);">
+                    <p style="padding-bottom: 1.5rem;">Sí, nuestros Chatbots con IA están activos 24/7/365, respondiendo
+                        al instante a tus clientes sin importar la hora o el día.</p>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="glass faq-item" style="border-radius: 12px; overflow: hidden; cursor: pointer;">
+                <div class="faq-header"
+                    style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <h4 style="margin: 0; font-size: 1.1rem;">¿Necesito conocimientos técnicos?</h4>
+                    <span style="font-size: 1.5rem; color: var(--text-accent);">+</span>
+                </div>
+                <div class="faq-body"
+                    style="padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-secondary);">
+                    <p style="padding-bottom: 1.5rem;">Para nada. Nosotros nos encargamos de toda la complejidad
+                        técnica. Tú recibes un panel fácil de usar y reportes claros de resultados.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><section id="team" class="section">
+    <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+            <span
+                style="color: var(--text-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Nuestro
+                Equipo</span>
+            <h2 style="font-size: 3rem; margin-top: 1rem;">Las mentes detrás de <span class="text-gradient">la
+                    magia</span></h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto;">Un equipo joven, apasionado y
+                comprometido con la excelencia. "Vamos a por todas"</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <!-- Oussama -->
+            <div class="glass reveal" style="padding: 2rem; border-radius: var(--radius-lg); text-align: center;">
+                <div
+                    style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1.5rem; overflow: hidden; border: 4px solid rgba(255,255,255,0.1);">
+                    <img src="../Fotos/Oussama.png" alt="Oussama - CEO"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3 style="margin-bottom: 0.2rem;">Oussama</h3>
+                <span style="color: var(--text-accent); font-size: 0.9rem; font-weight: 600;">Co-Founder & CEO</span>
+                <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.95rem;">Visionario tecnológico y
+                    líder del equipo, impulsando la innovación en cada proyecto.</p>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem;">
+                    <a href="#" style="color: var(--text-secondary);">LinkedIn</a>
+                </div>
+            </div>
+
+            <!-- Sanae -->
+            <div class="glass reveal"
+                style="padding: 2rem; border-radius: var(--radius-lg); text-align: center; border: 1px solid rgba(168, 85, 247, 0.3); transition-delay: 100ms;">
+                <div
+                    style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1.5rem; overflow: hidden; border: 4px solid rgba(168, 85, 247, 0.3);">
+                    <img src="../Fotos/Sanae.jpg" alt="Sanae - COO"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3 style="margin-bottom: 0.2rem;">Sanae</h3>
+                <span style="color: #a855f7; font-size: 0.9rem; font-weight: 600;">Co-Founder & COO</span>
+                <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.95rem;">Estratega de operaciones
+                    que convierte ideas en soluciones reales y escalables.</p>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem;">
+                    <a href="#" style="color: var(--text-secondary);">LinkedIn</a>
+                </div>
+            </div>
+
+            <!-- Moha -->
+            <div class="glass reveal"
+                style="padding: 2rem; border-radius: var(--radius-lg); text-align: center; transition-delay: 200ms;">
+                <div
+                    style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1.5rem; overflow: hidden; border: 4px solid rgba(255,255,255,0.1);">
+                    <img src="../Fotos/Moha.jpg" alt="Moha - Lead Dev"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3 style="margin-bottom: 0.2rem;">Moha</h3>
+                <span style="color: var(--text-accent); font-size: 0.9rem; font-weight: 600;">Lead Developer</span>
+                <p style="color: var(--text-secondary); margin-top: 1rem; font-size: 0.95rem;">Arquitecto de código que
+                    transforma conceptos complejos en software elegante.</p>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem;">
+                    <a href="#" style="color: var(--text-secondary);">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><section id="contact" class="section" style="background: linear-gradient(to bottom, var(--bg-dark), var(--bg-darker));">
+    <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+
+        <!-- Persuasion Column -->
+        <div>
+            <span style="color: var(--text-accent); font-weight: 600;">CONTACTO</span>
+            <h2 style="font-size: 3rem; margin: 1rem 0;">Hablemos de tu <br><span class="text-gradient">siguiente
+                    nivel</span></h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">
+                ¿Listo para automatizar? Nuestro equipo de expertos está esperando para diseñar la solución perfecta
+                para ti.
+            </p>
+
+            <div style="display: flex; gap: 1rem; color: var(--text-primary); margin-bottom: 1rem;">
+                <span>📧 contacto@somsyngular.com</span>
+            </div>
+        </div>
+
+        <!-- Conversion Form -->
+        <div class="glass" style="padding: 2.5rem; border-radius: var(--radius-lg);">
+            <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div>
+                    <label
+                        style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Nombre
+                        completo</label>
+                    <input type="text" name="name"
+                        style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Correo
+                        corporativo</label>
+                    <input type="email" name="email"
+                        style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none;">
+                </div>
+
+                <!-- NEW FIELDS START -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label
+                            style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Empresa</label>
+                        <input type="text" name="company"
+                            style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none;">
+                    </div>
+                    <div>
+                        <label
+                            style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Teléfono</label>
+                        <input type="tel" name="phone"
+                            style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none;">
+                    </div>
+                </div>
+                <!-- NEW FIELDS END -->
+
+                <div>
+                    <label
+                        style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">¿Cómo
+                        podemos ayudarte?</label>
+                    <textarea name="message" rows="4"
+                        style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Enviar
+                    Mensaje</button>
+            </form>
+        </div>
+
+    </div>
+</section><!-- Chat Window (Hidden by default) -->
+<div id="chat-window" class="glass hidden"
+    style="position: fixed; bottom: 100px; right: 2rem; width: 350px; height: 500px; border-radius: var(--radius-lg); z-index: 9999; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+    <div style="background: var(--gradient-primary); padding: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 10px; height: 10px; background: #4ade80; border-radius: 50%;"></div>
+        <span style="font-weight: 600;">Asistente SOM AI</span>
+    </div>
+    <div style="flex: 1; padding: 1rem; overflow-y: auto;">
+        <div
+            style="background: rgba(255,255,255,0.1); padding: 0.8rem; border-radius: 8px; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+            Hola 👋 ¿En qué puedo ayudarte a escalar tu negocio hoy?
+        </div>
+    </div>
+    <div style="padding: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <input type="text" placeholder="Escribe tu mensaje..."
+            style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: none; border-radius: 20px; color: white; outline: none;">
+    </div>
+</div>
+
+<!-- Floating Button -->
+<button id="chatbot-toggle"
+    style="position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; border-radius: 50%; background: var(--gradient-primary); border: none; cursor: pointer; box-shadow: 0 5px 20px rgba(0, 114, 255, 0.4); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: transform 0.2s;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+</button>
+
+<style>
+    .hidden {
+        display: none !important;
+    }
+
+    #chatbot-toggle:hover {
+        transform: scale(1.1);
+    }
+</style><footer
+    style="background-color: var(--bg-darker); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 5rem; padding-bottom: 2rem;">
+    <div class="container">
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 4rem;">
+            <div>
+                <span style="font-weight: 800; font-size: 1.25rem; display: block; margin-bottom: 1rem;">
+                    <span
+                        style="background: var(--gradient-primary); padding: 4px 8px; border-radius: 4px; color: white;">S</span>
+                    SOM ATLAS <span style="color: var(--text-accent);">SOLUTION</span>
+                </span>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    Transformando el futuro de los negocios con inteligencia artificial y automatización estratégica.
+                </p>
+            </div>
+
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Explora</h4>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li><a href="#services"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Servicios</a>
+                    </li>
+                    <li><a href="#portfolio"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Portafolio</a>
+                    </li>
+                    <li><a href="#team"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Equipo</a>
+                    </li>
+                    <li><a href="#contact"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Legal</h4>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li><a href="../PAGES/PrivacyPolicy.html"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Privacidad</a>
+                    </li>
+                    <li><a href="../PAGES/PrivacyPolicy.html"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Términos</a>
+                    </li>
+                    <li><a href="#"
+                            style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">Cookies</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Contacto</h4>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li style="color: var(--text-secondary); font-size: 0.9rem;">📍 Madrid, España</li>
+                    <li style="color: var(--text-secondary); font-size: 0.9rem;">📧 hola@somsyngular.com</li>
+                    <li style="color: var(--text-secondary); font-size: 0.9rem;">📱 +34 600 000 000</li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; text-align: center; position: relative;">
+            <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                &copy; 2024 SOM ATLAS SOLUTION. Todos los derechos reservados.
+            </p>
+            <button onclick="openAdmin()"
+                style="position: absolute; bottom: 0; right: 0; padding: 1rem; opacity: 0.1; background: none; border: none; cursor: default; color: white;">🔒</button>
+        </div>
+    </div>
+</footer><!-- Admin Dashboard Overlay -->
+<div id="admin-dashboard-overlay"
+    style="display: none; position: fixed; inset: 0; z-index: 10000; background: #0a0a0f;">
+
+    <!-- Auth Screen -->
+    <div id="admin-auth"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+        <h2 style="margin-bottom: 2rem;">🔒 Admin Access</h2>
+        <input type="password" id="admin-password-input" placeholder="Contraseña..."
+            style="padding: 1rem; width: 300px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; margin-bottom: 1rem; outline: none;">
+        <div style="display: flex; gap: 1rem;">
+            <button onclick="closeAdmin()" class="btn btn-ghost">Cancelar</button>
+            <button onclick="attemptLogin()" class="btn btn-primary">Entrar</button>
+        </div>
+        <p id="login-error" style="color: #ef4444; margin-top: 1rem; display: none;">Contraseñ incorrecta</p>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="admin-panel" style="display: none; height: 100%; overflow-y: auto;">
+        <div class="container" style="padding: 4rem 1rem;">
+
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <h1>Admin <span class="text-gradient">Leads</span></h1>
+                <div style="display: flex; gap: 1rem;">
+                    <button onclick="refreshLeads()" class="btn btn-ghost">🔄 Actualizar</button>
+                    <button onclick="generateTestLead()" class="btn btn-ghost" style="color: var(--text-accent);">+ Test
+                        Data</button>
+                    <button onclick="closeAdmin()" class="btn btn-primary">Salir</button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                    <span style="color: var(--text-secondary);">Total Mensajes</span>
+                    <h3 id="stat-total" style="font-size: 3rem; margin: 0;">0</h3>
+                </div>
+                <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                    <span style="color: var(--text-secondary);">Hoy</span>
+                    <h3 id="stat-today" style="font-size: 3rem; margin: 0;">0</h3>
+                </div>
+            </div>
+
+            <!-- Leads Table -->
+            <div class="glass" style="padding: 2rem; border-radius: 16px; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; min-width: 800px;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Fecha</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Nombre</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Email</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Mensaje</th>
+                            <th style="text-align: right; padding: 1rem; color: var(--text-accent);">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-body">
+                        <!-- JS renders here -->
+                    </tbody>
+                </table>
+                <div id="empty-state"
+                    style="text-align: center; padding: 3rem; color: var(--text-secondary); display: none;">
+                    No hay mensajes todavía.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // Logic for Embedded Admin Dashboard
+
+    function openAdmin() {
+        document.getElementById('admin-dashboard-overlay').style.display = 'block';
+        document.getElementById('admin-auth').style.display = 'flex';
+        document.getElementById('admin-panel').style.display = 'none';
+        document.getElementById('admin-password-input').focus();
+    }
+
+    function closeAdmin() {
+        document.getElementById('admin-dashboard-overlay').style.display = 'none';
+        document.getElementById('admin-password-input').value = '';
+    }
+
+    function attemptLogin() {
+        const val = document.getElementById('admin-password-input').value;
+        if (val === 'somatlas2024') {
+            document.getElementById('admin-auth').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
+            refreshLeads();
+        } else {
+            document.getElementById('login-error').style.display = 'block';
+        }
+    }
+
+    // Enter key for login
+    document.getElementById('admin-password-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') attemptLogin();
+    });
+
+    function refreshLeads() {
+        const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+        const tbody = document.getElementById('leads-body');
+        tbody.innerHTML = '';
+
+        document.getElementById('stat-total').innerText = leads.length;
+
+        const today = new Date().toDateString();
+        const todayCount = leads.filter(l => new Date(l.submitted_at).toDateString() === today).length;
+        document.getElementById('stat-today').innerText = todayCount;
+
+        if (leads.length === 0) {
+            document.getElementById('empty-state').style.display = 'block';
+        } else {
+            document.getElementById('empty-state').style.display = 'none';
+            leads.forEach((lead, index) => {
+                const date = new Date(lead.submitted_at).toLocaleString();
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                tr.innerHTML = `
+                    <td style="padding: 1rem; color: #94a3b8; font-size: 0.9rem;">${date}</td>
+                    <td style="padding: 1rem; font-weight: 500;">${lead.name}</td>
+                    <td style="padding: 1rem; color: #94a3b8;">${lead.email}</td>
+                    <td style="padding: 1rem; max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${lead.message}</td>
+                    <td style="padding: 1rem; text-align: right;">
+                        <button onclick="deleteLead(${index})" style="background: none; border: none; cursor: pointer; color: #ef4444;">🗑️</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    }
+
+    function deleteLead(index) {
+        if (confirm("¿Borrar este mensaje?")) {
+            const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+            leads.splice(index, 1);
+            localStorage.setItem('som_atlas_leads', JSON.stringify(leads));
+            refreshLeads();
+        }
+    }
+
+    function generateTestLead() {
+        const names = ["Carlos Ruiz", "Elena Gomez", "Tech Corp Ltd", "Startup Finex"];
+        const msgs = ["Hola, me interesa el servicio.", "Presupuesto para web.", "¿Tienen API?", "Soporte 24/7 precio."];
+
+        const testLead = {
+            name: names[Math.floor(Math.random() * names.length)],
+            email: `test${Math.floor(Math.random() * 100)}@ejemplo.com`,
+            message: msgs[Math.floor(Math.random() * msgs.length)] + " [TEST GENERADO]",
+            submitted_at: new Date().toISOString()
+        };
+
+        const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+        leads.unshift(testLead);
+        localStorage.setItem('som_atlas_leads', JSON.stringify(leads));
+        refreshLeads();
+    }
+</script><div id="cookie-banner" class="glass"
+    style="position: fixed; bottom: 2rem; left: 2rem; max-width: 400px; padding: 1.5rem; border-radius: 12px; z-index: 9000; display: none; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+    <h4 style="margin-bottom: 0.5rem;">🍪 Cookies & Privacidad</h4>
+    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.5;">
+        Usamos cookies para mejorar tu experiencia y analizar el tráfico. Al continuar, aceptas nuestra política.
+    </p>
+    <div style="display: flex; gap: 0.5rem;">
+        <button id="accept-cookies" class="btn btn-primary"
+            style="padding: 0.5rem 1rem; font-size: 0.9rem;">Aceptar</button>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'" class="btn btn-ghost"
+            style="padding: 0.5rem 1rem; font-size: 0.9rem;">Cerrar</button>
+    </div>
+</div><script>/**
+ * Entity: ContactSubmission
+ * Represents a contact form submission (Lead).
+ * Focus: Data Integrity & Validation "Money First"
+ */
+class ContactSubmission {
+    constructor(data = {}) {
+        this.name = data.name || '';
+        this.email = data.email || '';
+        this.phone = data.phone || ''; // Optional but valuable
+        this.company = data.company || '';
+        this.message = data.message || '';
+        this.createdAt = new Date();
+    }
+
+    /**
+     * Validates the submission data.
+     * @returns {Object} { isValid: boolean, errors: Array<string> }
+     */
+    validate() {
+        const errors = [];
+
+        if (!this.name || this.name.length < 2) {
+            errors.push("El nombre es obligatorio.");
+        }
+
+        if (!this.email || !this.email.includes('@')) {
+            errors.push("El email no es válido.");
+        }
+
+        if (!this.message || this.message.length < 10) {
+            errors.push("Por favor cuéntanos un poco más sobre tu proyecto.");
+        }
+
+        return {
+            isValid: errors.length === 0,
+            errors
+        };
+    }
+
+    /**
+     * Serializes for API/Storage
+     */
+    toJSON() {
+        return {
+            name: this.name,
+            email: this.email,
+            phone: this.phone,
+            company: this.company,
+            message: this.message,
+            submitted_at: this.createdAt.toISOString()
+        };
+    }
+}
+// Entities
+
+
+console.log("SOM ATLAS SYSTEM: Loaded");
+
+function initApp() {
+    console.log("SOM ATLAS SYSTEM: Initializing App Logic...");
+
+    // 1. CHATBOT LOGIC
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatWindow = document.getElementById('chat-window');
+
+    if (chatbotToggle && chatWindow) {
+        // Clone to remove old listeners
+        const newToggle = chatbotToggle.cloneNode(true);
+        chatbotToggle.parentNode.replaceChild(newToggle, chatbotToggle);
+
+        // Notification Badge Logic
+        setTimeout(() => {
+            if (chatWindow.classList.contains('hidden')) {
+                const badge = document.createElement('div');
+                badge.id = 'chat-badge';
+                badge.style.position = 'absolute';
+                badge.style.top = '-5px';
+                badge.style.right = '-5px';
+                badge.style.background = '#ef4444';
+                badge.style.color = 'white';
+                badge.style.borderRadius = '50%';
+                badge.style.width = '20px';
+                badge.style.height = '20px';
+                badge.style.fontSize = '12px';
+                badge.style.display = 'flex';
+                badge.style.alignItems = 'center';
+                badge.style.justifyContent = 'center';
+                badge.style.fontWeight = 'bold';
+                badge.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                badge.innerHTML = '1';
+                newToggle.appendChild(badge);
+                newToggle.style.animation = 'pulse 2s infinite';
+            }
+        }, 5000); // Show notification after 5s
+
+        newToggle.addEventListener('click', () => {
+            console.log("Chatbot CLICKED");
+            const isHidden = chatWindow.classList.contains('hidden');
+
+            // Remove badge
+            const badge = document.getElementById('chat-badge');
+            if (badge) badge.remove();
+            newToggle.style.animation = '';
+
+            if (isHidden) {
+                // Open
+                chatWindow.classList.remove('hidden');
+                chatWindow.style.display = 'flex'; // FORCE DISPLAY
+                setTimeout(() => {
+                    const input = chatWindow.querySelector('input');
+                    if (input) input.focus();
+                }, 50);
+            } else {
+                // Close
+                chatWindow.classList.add('hidden');
+                chatWindow.style.display = 'none';
+            }
+        });
+
+        // Chat Input Logic
+        const chatInput = chatWindow.querySelector('input');
+        const chatBody = chatWindow.querySelector('div:nth-child(2)'); // Content area
+
+        if (chatInput && chatBody) {
+            chatInput.addEventListener('keypress', async (e) => {
+                if (e.key === 'Enter' && chatInput.value.trim() !== "") {
+                    const userMsg = chatInput.value.trim();
+
+                    // User Msg
+                    addChatMessage(chatBody, userMsg, 'user');
+                    chatInput.value = "";
+
+                    // Bot Typing
+                    const typingId = showTyping(chatBody);
+
+                    // Bot Response via Webhook
+                    try {
+                        const response = await fetch('https://n8n.srv1119749.hstgr.cloud/webhook/845ded30-928e-4bf0-9498-4e4ebaf4d6b8', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ message: userMsg })
+                        });
+                        const data = await response.json();
+                        removeTyping(typingId);
+
+                        // Handle various n8n response formats
+                        const botText = data.output || data.text || data.message || (typeof data === 'string' ? data : JSON.stringify(data));
+                        addChatMessage(chatBody, botText, 'bot');
+
+                    } catch (error) {
+                        console.error('Chatbot Error:', error);
+                        removeTyping(typingId);
+                        addChatMessage(chatBody, "Lo siento, tuve un problema de conexión. Intenta de nuevo más tarde.", 'bot');
+                    }
+                }
+            });
+        }
+    } else {
+        console.error("Chatbot elements not found!");
+    }
+
+    // 2. CONTACT FORM LOGIC
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        // Clone to remove old listeners
+        const newForm = contactForm.cloneNode(true);
+        contactForm.parentNode.replaceChild(newForm, contactForm);
+
+        newForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            const submission = new ContactSubmission(data);
+            const validation = submission.validate();
+
+            if (!validation.isValid) {
+                alert("⚠️ " + validation.errors.join("\n"));
+                return;
+            }
+
+            submitBtn.textContent = "Enviando...";
+            submitBtn.disabled = true;
+
+            // --- REAL N8N CONNECTION START ---
+            // Replace this URL with your actual production n8n/webhook URL
+            const WEBHOOK_URL = 'https://n8n.srv1119749.hstgr.cloud/webhook/a761a7e9-5fb1-4998-9cd8-7bdb73cde558';
+
+            try {
+                // Determine if we should send to real webhook or fallback for demo
+                const isProduction = !WEBHOOK_URL.includes('YOUR_N8N');
+
+                if (isProduction) {
+                    const response = await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(submission.toJSON())
+                    });
+
+                    if (!response.ok) throw new Error('Network response was not ok');
+                } else {
+                    // Demo Mode: Simulate network delay if no real URL is set
+                    console.log("[DEV MODE] Form Data:", submission.toJSON());
+                    await new Promise(r => setTimeout(r, 1000));
+                }
+
+                // Success
+                submitBtn.textContent = "¡Mensaje Recibido!";
+                submitBtn.style.background = "#22c55e";
+                submitBtn.style.borderColor = "#22c55e";
+                form.reset();
+
+                // Save backup to LocalStorage just in case
+                try {
+                    const submissions = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+                    submissions.unshift(submission.toJSON());
+                    localStorage.setItem('som_atlas_leads', JSON.stringify(submissions));
+                } catch (e) { console.error('Local backup failed', e); }
+
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                submitBtn.textContent = "Hubo un error :(";
+                submitBtn.style.background = "#ef4444";
+                submitBtn.style.borderColor = "#ef4444";
+                alert("Hubo un problema enviando tu mensaje. Por favor intenta de nuevo o escríbenos a contacto@somsyngular.com");
+            }
+            // --- REAL N8N CONNECTION END ---
+
+            setTimeout(() => {
+                submitBtn.textContent = "Enviar Mensaje";
+                submitBtn.disabled = false;
+                submitBtn.style.background = "";
+                submitBtn.style.borderColor = "";
+            }, 5000);
+        });
+    }
+
+    // 3. SCROLL ANIMATIONS
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 4. TAB LOGIC (Services)
+    const tabs = document.querySelectorAll('.service-tab');
+    const contents = document.querySelectorAll('.service-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('tab-active'));
+            tab.classList.add('tab-active');
+            const target = tab.dataset.target;
+            contents.forEach(c => c.style.display = (c.id === target) ? 'block' : 'none');
+        });
+    });
+
+    // 5. FILTER LOGIC (Portfolio)
+    const filters = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-card');
+    filters.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filters.forEach(b => {
+                b.classList.remove('filter-active');
+                b.classList.remove('btn-primary');
+                b.classList.add('btn-ghost');
+            });
+            btn.classList.add('filter-active');
+            btn.classList.remove('btn-ghost');
+
+            const cat = btn.dataset.filter;
+            projects.forEach(p => {
+                p.style.display = (cat === 'all' || p.dataset.category === cat) ? 'block' : 'none';
+                if (p.style.display === 'block') setTimeout(() => p.style.opacity = '1', 50);
+                else p.style.opacity = '0';
+            });
+        });
+    });
+
+    // 6. FAQ ACCORDION LOGIC
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-header').addEventListener('click', () => {
+            const body = item.querySelector('.faq-body');
+            const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+
+            // Close all
+            document.querySelectorAll('.faq-body').forEach(b => b.style.maxHeight = '0px');
+
+            // Toggle current
+            if (!isOpen) {
+                body.style.maxHeight = body.scrollHeight + 'px';
+            }
+        });
+    });
+
+    // 7. PARTICLE NETWORK BACKGROUND
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+        initParticles(heroSection);
+    }
+
+    // 8. ROI CALCULATOR LOGIC
+    const roiEmployees = document.getElementById('roi-employees');
+    const roiSalary = document.getElementById('roi-salary');
+    const roiPercent = document.getElementById('roi-percent');
+    const roiDisplay = document.getElementById('roi-percent-display');
+    const roiTotal = document.getElementById('roi-total');
+
+    if (roiEmployees && roiSalary && roiPercent) {
+        function calculateROI() {
+            const emp = parseInt(roiEmployees.value) || 0;
+            const sal = parseInt(roiSalary.value) || 0;
+            const pct = parseInt(roiPercent.value) || 0;
+
+            roiDisplay.innerText = pct + "%";
+
+            const savings = (emp * sal) * (pct / 100);
+            roiTotal.innerText = "€" + savings.toLocaleString('en-US'); // US locale for commas
+        }
+
+        roiEmployees.addEventListener('input', calculateROI);
+        roiSalary.addEventListener('input', calculateROI);
+        roiPercent.addEventListener('input', calculateROI);
+    }
+
+    // 9. COOKIE BANNER LOGIC
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptCookies = document.getElementById('accept-cookies');
+
+    if (cookieBanner && !localStorage.getItem('som_atlas_cookies')) {
+        setTimeout(() => {
+            cookieBanner.style.display = 'block';
+            cookieBanner.classList.add('reveal');
+            cookieBanner.classList.add('active');
+        }, 2000);
+    }
+
+    if (acceptCookies) {
+        acceptCookies.addEventListener('click', () => {
+            localStorage.setItem('som_atlas_cookies', 'true');
+            cookieBanner.style.display = 'none';
+        });
+    }
+
+    // 10. PROJECT MODAL LOGIC (New)
+    const modal = document.getElementById('project-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    const closeModal = document.getElementById('close-modal');
+
+    if (modal && backdrop) {
+        // Open Modal
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => {
+                const img = card.querySelector('img').src;
+                const title = card.querySelector('h3').innerText;
+                const desc = card.querySelector('p').innerText;
+                const tags = card.querySelectorAll('div > span'); // Select tags
+
+                // Populate
+                document.getElementById('modal-img').src = img;
+                document.getElementById('modal-title').innerText = title;
+                document.getElementById('modal-desc').innerText = desc + " Este proyecto es un ejemplo de cómo aplicamos tecnología avanzada para resolver problemas reales. Si buscas una solución similar, contáctanos.";
+
+                // Tags
+                const tagsContainer = document.getElementById('modal-tags');
+                tagsContainer.innerHTML = '';
+                tags.forEach(tag => {
+                    const newTag = tag.cloneNode(true);
+                    newTag.style.background = 'rgba(255,255,255,0.1)';
+                    newTag.style.color = '#38bdf8';
+                    newTag.style.border = '1px solid rgba(56, 189, 248, 0.3)';
+                    tagsContainer.appendChild(newTag);
+                });
+
+                // Show
+                modal.style.display = 'flex';
+                backdrop.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Stop scroll
+            });
+        });
+
+        // Close Logic
+        function hideModal() {
+            modal.style.display = 'none';
+            backdrop.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        closeModal.addEventListener('click', hideModal);
+        backdrop.addEventListener('click', hideModal);
+    }
+
+    // 11. NEURAL NETWORK ANIMATION (New)
+    initNeuralNetwork('neural-canvas');
+}
+
+function initNeuralNetwork(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resize() {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+        initParticles();
+    }
+
+    function initParticles() {
+        particles = [];
+        const count = Math.floor(width * height / 15000); // Density
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 2 + 1
+            });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#38bdf8';
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.15)';
+
+        // Update & Draw Particles
+        for (let i = 0; i < particles.length; i++) {
+            let p = particles[i];
+
+            // Move
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Bounce
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            // Draw Dot
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Connect
+            for (let j = i + 1; j < particles.length; j++) {
+                let p2 = particles[j];
+                let dx = p.x - p2.x;
+                let dy = p.y - p2.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 100) {
+                    ctx.beginPath();
+                    ctx.lineWidth = 1 - (dist / 100);
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+}
+
+function initParticles(container) {
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '-1';
+    container.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resize() {
+        width = canvas.width = container.offsetWidth;
+        height = canvas.height = container.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+        draw() {
+            ctx.fillStyle = 'rgba(0, 198, 255, 0.3)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+            // Connections
+            particles.forEach(p2 => {
+                const dx = p.x - p2.x;
+                const dy = p.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    ctx.strokeStyle = `rgba(0, 198, 255, ${0.1 - dist / 1500})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            });
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+
+// Helpers
+function addChatMessage(container, text, sender) {
+    const div = document.createElement('div');
+    div.style.padding = "0.8rem";
+    div.style.borderRadius = "8px";
+    div.style.marginBottom = "0.5rem";
+    div.style.maxWidth = "85%";
+
+    if (sender === 'user') {
+        div.style.background = "var(--gradient-primary)";
+        div.style.color = "white";
+        div.style.marginLeft = "auto";
+    } else {
+        div.style.background = "rgba(255,255,255,0.1)";
+        div.style.color = "var(--text-secondary)";
+    }
+    div.textContent = text;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
+
+function showTyping(container) {
+    const div = document.createElement('div');
+    div.id = 'typing-' + Date.now();
+    div.style.padding = "0.5rem";
+    div.style.color = "var(--text-secondary)";
+    div.style.fontStyle = "italic";
+    div.textContent = "Escribiendo...";
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    return div.id;
+}
+
+function removeTyping(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+}
+
+function getBotResponse(msg) {
+    msg = msg.toLowerCase();
+    if (msg.includes('precio') || msg.includes('costo')) return "¿Te gustaría agendar una llamada para un presupuesto a medida?";
+    if (msg.includes('servicios')) return "Desarrollo Web, Chatbots de IA y Automatización. ¿Qué necesitas?";
+    if (msg.includes('hola')) return "¡Hola! ¿Cómo podemos escalar tu negocio hoy?";
+    return "Déjanos tus datos en el formulario y te contactamos enseguida.";
+}
+
+document.addEventListener('DOMContentLoaded', initApp);</script></body></html>

@@ -1,0 +1,161 @@
+<!-- Admin Dashboard Overlay -->
+<div id="admin-dashboard-overlay"
+    style="display: none; position: fixed; inset: 0; z-index: 10000; background: #0a0a0f;">
+
+    <!-- Auth Screen -->
+    <div id="admin-auth"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+        <h2 style="margin-bottom: 2rem;">🔒 Admin Access</h2>
+        <input type="password" id="admin-password-input" placeholder="Contraseña..."
+            style="padding: 1rem; width: 300px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; margin-bottom: 1rem; outline: none;">
+        <div style="display: flex; gap: 1rem;">
+            <button onclick="closeAdmin()" class="btn btn-ghost">Cancelar</button>
+            <button onclick="attemptLogin()" class="btn btn-primary">Entrar</button>
+        </div>
+        <p id="login-error" style="color: #ef4444; margin-top: 1rem; display: none;">Contraseñ incorrecta</p>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="admin-panel" style="display: none; height: 100%; overflow-y: auto;">
+        <div class="container" style="padding: 4rem 1rem;">
+
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <h1>Admin <span class="text-gradient">Leads</span></h1>
+                <div style="display: flex; gap: 1rem;">
+                    <button onclick="refreshLeads()" class="btn btn-ghost">🔄 Actualizar</button>
+                    <button onclick="generateTestLead()" class="btn btn-ghost" style="color: var(--text-accent);">+ Test
+                        Data</button>
+                    <button onclick="closeAdmin()" class="btn btn-primary">Salir</button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                    <span style="color: var(--text-secondary);">Total Mensajes</span>
+                    <h3 id="stat-total" style="font-size: 3rem; margin: 0;">0</h3>
+                </div>
+                <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                    <span style="color: var(--text-secondary);">Hoy</span>
+                    <h3 id="stat-today" style="font-size: 3rem; margin: 0;">0</h3>
+                </div>
+            </div>
+
+            <!-- Leads Table -->
+            <div class="glass" style="padding: 2rem; border-radius: 16px; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; min-width: 800px;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Fecha</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Nombre</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Email</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-accent);">Mensaje</th>
+                            <th style="text-align: right; padding: 1rem; color: var(--text-accent);">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-body">
+                        <!-- JS renders here -->
+                    </tbody>
+                </table>
+                <div id="empty-state"
+                    style="text-align: center; padding: 3rem; color: var(--text-secondary); display: none;">
+                    No hay mensajes todavía.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    // Logic for Embedded Admin Dashboard
+
+    function openAdmin() {
+        document.getElementById('admin-dashboard-overlay').style.display = 'block';
+        document.getElementById('admin-auth').style.display = 'flex';
+        document.getElementById('admin-panel').style.display = 'none';
+        document.getElementById('admin-password-input').focus();
+    }
+
+    function closeAdmin() {
+        document.getElementById('admin-dashboard-overlay').style.display = 'none';
+        document.getElementById('admin-password-input').value = '';
+    }
+
+    function attemptLogin() {
+        const val = document.getElementById('admin-password-input').value;
+        if (val === 'somatlas2024') {
+            document.getElementById('admin-auth').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
+            refreshLeads();
+        } else {
+            document.getElementById('login-error').style.display = 'block';
+        }
+    }
+
+    // Enter key for login
+    document.getElementById('admin-password-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') attemptLogin();
+    });
+
+    function refreshLeads() {
+        const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+        const tbody = document.getElementById('leads-body');
+        tbody.innerHTML = '';
+
+        document.getElementById('stat-total').innerText = leads.length;
+
+        const today = new Date().toDateString();
+        const todayCount = leads.filter(l => new Date(l.submitted_at).toDateString() === today).length;
+        document.getElementById('stat-today').innerText = todayCount;
+
+        if (leads.length === 0) {
+            document.getElementById('empty-state').style.display = 'block';
+        } else {
+            document.getElementById('empty-state').style.display = 'none';
+            leads.forEach((lead, index) => {
+                const date = new Date(lead.submitted_at).toLocaleString();
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                tr.innerHTML = `
+                    <td style="padding: 1rem; color: #94a3b8; font-size: 0.9rem;">${date}</td>
+                    <td style="padding: 1rem; font-weight: 500;">${lead.name}</td>
+                    <td style="padding: 1rem; color: #94a3b8;">${lead.email}</td>
+                    <td style="padding: 1rem; max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${lead.message}</td>
+                    <td style="padding: 1rem; text-align: right;">
+                        <button onclick="deleteLead(${index})" style="background: none; border: none; cursor: pointer; color: #ef4444;">🗑️</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    }
+
+    function deleteLead(index) {
+        if (confirm("¿Borrar este mensaje?")) {
+            const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+            leads.splice(index, 1);
+            localStorage.setItem('som_atlas_leads', JSON.stringify(leads));
+            refreshLeads();
+        }
+    }
+
+    function generateTestLead() {
+        const names = ["Carlos Ruiz", "Elena Gomez", "Tech Corp Ltd", "Startup Finex"];
+        const msgs = ["Hola, me interesa el servicio.", "Presupuesto para web.", "¿Tienen API?", "Soporte 24/7 precio."];
+
+        const testLead = {
+            name: names[Math.floor(Math.random() * names.length)],
+            email: `test${Math.floor(Math.random() * 100)}@ejemplo.com`,
+            message: msgs[Math.floor(Math.random() * msgs.length)] + " [TEST GENERADO]",
+            submitted_at: new Date().toISOString()
+        };
+
+        const leads = JSON.parse(localStorage.getItem('som_atlas_leads') || '[]');
+        leads.unshift(testLead);
+        localStorage.setItem('som_atlas_leads', JSON.stringify(leads));
+        refreshLeads();
+    }
+</script>
