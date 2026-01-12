@@ -1,17 +1,18 @@
-
 .git
 .gitignore
 node_modules
+
 *.zip
 *.bak
-fix_layout.py
-restore_and_fix.py
-build_preview.py
-build_preview.js
-server.js
-importacion完整
-importacion completa
-importacion completa (2).zip
-importacion completa.zip
-README.md
-task.md
+
+# Scripts y backend (no necesarios para nginx)
+*.py
+*.js
+
+# IMPORTANTE: NO ignores el frontend
+!index.html
+!assets/
+!*.html
+!robots.txt
+!sitemap.xml
+!site.webmanifest
