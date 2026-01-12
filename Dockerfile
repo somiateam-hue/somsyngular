@@ -1,12 +1,14 @@
-
-# Use a lightweight Nginx image
 FROM nginx:alpine
 
-# Copy the static website files to the Nginx html directory
-COPY . /usr/share/nginx/html
+# Limpiar config por defecto
+RUN rm -rf /usr/share/nginx/html/*
 
-# Expose port 80
+# Copiar SOLO los archivos web
+COPY index.html /usr/share/nginx/html/
+COPY assets /usr/share/nginx/html/assets
+COPY *.html /usr/share/nginx/html/
+COPY robots.txt sitemap.xml site.webmanifest /usr/share/nginx/html/
+
 EXPOSE 80
 
-# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
