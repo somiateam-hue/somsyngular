@@ -1,5 +1,5 @@
 // Entities
-import { ContactSubmission } from '../../Entities/ContactSubmission.js';
+import { ContactSubmission } from './entities/ContactSubmission.js';
 
 console.log("SOM ATLAS SYSTEM: Loaded");
 

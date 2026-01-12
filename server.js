@@ -26,7 +26,7 @@ http.createServer(function (request, response) {
 
     let filePath = '.' + request.url;
     if (filePath === './') {
-        filePath = './PAGES/HOME.html';
+        filePath = './index.html';
     }
 
     const extname = String(path.extname(filePath)).toLowerCase();
@@ -35,7 +35,7 @@ http.createServer(function (request, response) {
     fs.readFile(filePath, function (error, content) {
         if (error) {
             if (error.code == 'ENOENT') {
-                fs.readFile('./PAGES/404.html', function (error, content) {
+                fs.readFile('./404.html', function (error, content) {
                     response.writeHead(404, { 'Content-Type': 'text/html' }); // Serve as HTML, 404 status
                     response.end(content, 'utf-8');
                 });
@@ -54,5 +54,5 @@ http.createServer(function (request, response) {
 
 }).listen(PORT);
 
-console.log(`Server running at http://localhost:${PORT}/PAGES/HOME.html`);
+console.log(`Server running at http://localhost:${PORT}/index.html`);
 console.log('Press Ctrl+C to stop.');
