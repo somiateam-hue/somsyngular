@@ -252,7 +252,7 @@
               class="text-gradient">necesita</span></h2>
         </div>
 
-        <div class="reveal" style="display: grid; grid-template-columns: 350px 1fr; gap: 3rem; align-items: start;">
+        <div class="reveal services-grid">
           <!-- Sidebar Navigation -->
           <div style="display: flex; flex-direction: column; gap: 1rem;">
             <div class="service-tab glass tab-active" data-target="web-dev"
@@ -527,6 +527,8 @@
           style="display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 4rem;">
           <button class="filter-btn btn filter-active" data-filter="all"
             style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Todos</button>
+          <button class="filter-btn btn btn-ghost" data-filter="saas"
+            style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">SaaS</button>
           <button class="filter-btn btn btn-ghost" data-filter="support"
             style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Atención
             al Cliente</button>
@@ -543,14 +545,90 @@
             style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Finanzas</button>
           <button class="filter-btn btn btn-ghost" data-filter="travel"
             style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">Viajes</button>
-          <button class="filter-btn btn btn-ghost" data-filter="saas"
-            style="padding: 0.6rem 1.5rem; font-size: 0.85rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);">SaaS</button>
         </div>
 
         <!-- Grid -->
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2.5rem;">
 
-          <!-- 1. Chatbot Radulits -->
+          <!-- 1. Turnito (SaaS) -->
+          <div class="glass project-card reveal hover-lift" data-category="saas"
+            style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+            <div style="height: 220px; position: relative; overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop"
+                loading="lazy" alt="Restaurant Queue" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+              <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="color: var(--text-accent);">●</span>
+                <span
+                  style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
+              </div>
+              <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Turnito</h3>
+              <p
+                style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                Gestión de turnos y colas virtuales para restaurantes. Mejora la experiencia del comensal.</p>
+              <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <span
+                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Restaurante</span>
+                <span
+                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Gestión</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. DentistiQ (SaaS) -->
+          <div class="glass project-card reveal hover-lift" data-category="saas"
+            style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
+            <div style="height: 220px; position: relative; overflow: hidden;">
+              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop"
+                loading="lazy" alt="Dental Clinic" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+              <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="color: var(--text-accent);">●</span>
+                <span
+                  style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
+              </div>
+              <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">DentistiQ</h3>
+              <p
+                style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                Plataforma completa para gestión de clínicas dentales. Expedientes digitales y agenda.</p>
+              <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <span
+                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Salud</span>
+                <span
+                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Clinic</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TallerPro (SaaS) -->
+          <div class="glass project-card reveal hover-lift" data-category="saas"
+            style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 100ms;">
+            <div style="height: 220px; position: relative; overflow: hidden;">
+              <img src="./assets/img/Taller.jpg" loading="lazy" alt="Car Mechanic Workshop"
+                style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+              <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="color: var(--text-accent);">●</span>
+                <span
+                  style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
+              </div>
+              <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">TallerPro</h3>
+              <p
+                style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
+                Software de gestión para talleres mecánicos. Control de inventario y facturación.</p>
+              <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <span
+                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Taller</span>
+                <span
+                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Gestión</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Chatbot Radulits -->
           <div class="glass project-card reveal hover-lift" data-category="support"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -578,7 +656,7 @@
             </div>
           </div>
 
-          <!-- 2. Iman Evolution -->
+          <!-- 5. Iman Evolution -->
           <div class="glass project-card reveal hover-lift" data-category="ecommerce"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -605,7 +683,7 @@
             </div>
           </div>
 
-          <!-- 3. SEO Scraper Pro -->
+          <!-- 6. SEO Scraper Pro -->
           <div class="glass project-card reveal hover-lift" data-category="marketing"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 100ms;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -633,7 +711,7 @@
             </div>
           </div>
 
-          <!-- 4. Kit Digital Assistant -->
+          <!-- 7. Kit Digital Assistant -->
           <div class="glass project-card reveal hover-lift" data-category="consulting"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -659,7 +737,7 @@
             </div>
           </div>
 
-          <!-- 5. Hazme Viral GPT -->
+          <!-- 8. Hazme Viral GPT -->
           <div class="glass project-card reveal hover-lift" data-category="social"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -687,7 +765,7 @@
             </div>
           </div>
 
-          <!-- 6. PhiWallet Gold -->
+          <!-- 9. PhiWallet Gold -->
           <div class="glass project-card reveal hover-lift" data-category="finance"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 100ms;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -713,7 +791,7 @@
             </div>
           </div>
 
-          <!-- 7. Japón Guide GPT -->
+          <!-- 10. Japón Guide GPT -->
           <div class="glass project-card reveal hover-lift" data-category="travel"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -739,33 +817,7 @@
             </div>
           </div>
 
-          <!-- 8. Turnito -->
-          <div class="glass project-card reveal hover-lift" data-category="saas"
-            style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
-            <div style="height: 220px; position: relative; overflow: hidden;">
-              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop"
-                loading="lazy" alt="Restaurant Queue" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
-              <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span style="color: var(--text-accent);">●</span>
-                <span
-                  style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
-              </div>
-              <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">Turnito</h3>
-              <p
-                style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
-                Gestión de turnos y colas virtuales para restaurantes. Mejora la experiencia del comensal.</p>
-              <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <span
-                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Restaurante</span>
-                <span
-                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Gestión</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 9. Webs Profesionales -->
+          <!-- 11. Webs Profesionales -->
           <div class="glass project-card reveal hover-lift" data-category="marketing"
             style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 100ms;">
             <div style="height: 220px; position: relative; overflow: hidden;">
@@ -788,58 +840,6 @@
                   style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">UX/UI</span>
                 <span
                   style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Code</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 10. DentistiQ -->
-          <div class="glass project-card reveal hover-lift" data-category="saas"
-            style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
-            <div style="height: 220px; position: relative; overflow: hidden;">
-              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop"
-                loading="lazy" alt="Dental Clinic" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
-              <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span style="color: var(--text-accent);">●</span>
-                <span
-                  style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
-              </div>
-              <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">DentistiQ</h3>
-              <p
-                style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
-                Plataforma completa para gestión de clínicas dentales. Expedientes digitales y agenda.</p>
-              <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <span
-                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Salud</span>
-                <span
-                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Clinic</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 11. TallerPro -->
-          <div class="glass project-card reveal hover-lift" data-category="saas"
-            style="border-radius: var(--radius-lg); overflow: hidden; background: #0f1115; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition-delay: 50ms;">
-            <div style="height: 220px; position: relative; overflow: hidden;">
-              <img src="./assets/img/Taller.jpg" loading="lazy" alt="Car Mechanic Workshop"
-                style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
-              <div style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span style="color: var(--text-accent);">●</span>
-                <span
-                  style="color: var(--text-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">SaaS</span>
-              </div>
-              <h3 style="margin-bottom: 0.8rem; font-size: 1.4rem;">TallerPro</h3>
-              <p
-                style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1;">
-                Software de gestión para talleres mecánicos. Control de inventario y facturación.</p>
-              <div style="display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <span
-                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Taller</span>
-                <span
-                  style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; color: #cbd5e1;">Gestión</span>
               </div>
             </div>
           </div>
@@ -1211,7 +1211,7 @@
     <!-- Contact Section -->
     <section id="contact" class="section"
       style="background: linear-gradient(to bottom, var(--bg-dark), var(--bg-darker));">
-      <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+      <div class="container contact-grid">
 
         <!-- Persuasion Column -->
         <div>
@@ -1248,7 +1248,7 @@
             </div>
 
             <!-- NEW FIELDS START -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-row-grid">
               <div>
                 <label
                   style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">Empresa</label>
