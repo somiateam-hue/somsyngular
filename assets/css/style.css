@@ -157,6 +157,7 @@ h6 {
     opacity: 0;
     /* Hidden by default */
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
 }
 
 .reveal.active {
@@ -279,9 +280,9 @@ h6 {
     .form-row-grid {
         grid-template-columns: 1fr;
     }
-    
+
     /* Ensure reveal elements don't cause overflow on mobile entrance */
     .reveal {
-        max-width: 100vw; 
+        max-width: 100vw;
     }
 }
