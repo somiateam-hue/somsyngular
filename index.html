@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0B0B12" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>SOM SYNGULAR | Automatización e Inteligencia Artificial</title>
+    <meta name="description" content="Sistemas inteligentes que trabajan por ti 24/7. Automatización, IA y diseño de sistemas digitales avanzados." />
+  </head>
+  <body>
+    <svg class="hidden">
+      <filter id="noiseFilter">
+        <feTurbulence 
+          type="fractalNoise" 
+          baseFrequency="0.65" 
+          numOctaves="3" 
+          stitchTiles="stitch" />
+      </filter>
+    </svg>
+    <div class="noise-overlay" style="filter: url(#noiseFilter);"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
