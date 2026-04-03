@@ -1,11 +1,16 @@
-import React, { useState, useMemo } from 'react';
-import { useLocalStore } from '../../hooks/useLocalStore';
+import React, { useState, useMemo, useEffect } from 'react';
+import { subscribeLeads, toggleLeadDone, deleteLead } from '../../lib/firestoreDB';
 
 export default function Leads() {
-  const [leads, setLeads] = useLocalStore('syngular_leads', []);
+  const [leads,  setLeads]  = useState([]);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState('all'); // all | pending | done
+  const [filter, setFilter] = useState('all');
   const [copied, setCopied] = useState(null);
+
+  useEffect(() => {
+    const unsub = subscribeLeads(setLeads);
+    return unsub;
+  }, []);
 
   const filtered = useMemo(() => {
     return [...leads]
@@ -18,13 +23,8 @@ export default function Leads() {
       });
   }, [leads, search, filter]);
 
-  const toggleDone = (id) => {
-    setLeads(prev => prev.map(l => l.id === id ? { ...l, done: !l.done } : l));
-  };
-
-  const deleteLead = (id) => {
-    setLeads(prev => prev.filter(l => l.id !== id));
-  };
+  const handleToggleDone = (id, current) => toggleLeadDone(id, current);
+  const handleDelete     = (id)           => deleteLead(id);
 
   const copyEmail = (email) => {
     navigator.clipboard.writeText(email);
@@ -113,12 +113,12 @@ export default function Leads() {
                     style={{ background: 'rgba(168,85,247,0.15)', border: '1px solid rgba(168,85,247,0.25)' }}>
                     {copied === lead.email ? '✅' : '📋'}
                   </button>
-                  <button onClick={() => toggleDone(lead.id)} title={lead.done ? 'Marcar pendiente' : 'Marcar atendido'}
+                  <button onClick={() => handleToggleDone(lead.id, lead.done)} title={lead.done ? 'Marcar pendiente' : 'Marcar atendido'}
                     className="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:scale-105 text-sm"
                     style={{ background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.2)' }}>
                     {lead.done ? '↩️' : '✓'}
                   </button>
-                  <button onClick={() => deleteLead(lead.id)} title="Eliminar"
+                  <button onClick={() => handleDelete(lead.id)} title="Eliminar"
                     className="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:scale-105 text-sm"
                     style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
                     🗑️

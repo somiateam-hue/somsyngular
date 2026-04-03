@@ -25,5 +25,7 @@ dist-ssr
 
 # Extra Unwanted files 
 .claude
+.cursor
 directivas
 NUEVO SINGULAR*
+*.pdf

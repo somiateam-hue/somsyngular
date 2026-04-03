@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { saveContentToFirestore, loadContentFromFirestore } from '../lib/firestoreDB';
 
 const DEFAULT_CONTENT = {
   hero: {
@@ -88,10 +89,21 @@ export function ContentProvider({ children }) {
     return DEFAULT_CONTENT;
   });
 
+  // On mount: pull from Firestore and override local if newer data exists
+  useEffect(() => {
+    loadContentFromFirestore().then(remote => {
+      if (!remote) return;
+      const merged = deepMerge(DEFAULT_CONTENT, remote);
+      setContent(merged);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+    }).catch(() => {}); // silently fail — localStorage stays as fallback
+  }, []);
+
   const updateSection = (section, field, value) => {
     setContent(prev => {
       const next = { ...prev, [section]: { ...prev[section], [field]: value } };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      saveContentToFirestore(next).catch(() => {});
       return next;
     });
   };
@@ -103,26 +115,27 @@ export function ContentProvider({ children }) {
       arr[index] = { ...arr[index], [field]: value };
       const next = { ...prev, [section]: { ...prev[section], [arrayKey]: arr } };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      saveContentToFirestore(next).catch(() => {});
       return next;
     });
   };
 
-  // Add a new item to an array field (e.g. equipo.members)
   const addArrayItem = (section, arrayKey, newItem) => {
     setContent(prev => {
       const arr = [...(prev[section][arrayKey] || []), newItem];
       const next = { ...prev, [section]: { ...prev[section], [arrayKey]: arr } };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      saveContentToFirestore(next).catch(() => {});
       return next;
     });
   };
 
-  // Remove an item from an array field by index
   const removeArrayItem = (section, arrayKey, index) => {
     setContent(prev => {
       const arr = (prev[section][arrayKey] || []).filter((_, i) => i !== index);
       const next = { ...prev, [section]: { ...prev[section], [arrayKey]: arr } };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      saveContentToFirestore(next).catch(() => {});
       return next;
     });
   };
@@ -131,6 +144,7 @@ export function ContentProvider({ children }) {
     setContent(prev => {
       const next = { ...prev, [section]: DEFAULT_CONTENT[section] };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      saveContentToFirestore(next).catch(() => {});
       return next;
     });
   };
@@ -138,6 +152,7 @@ export function ContentProvider({ children }) {
   const resetAll = () => {
     localStorage.removeItem(STORAGE_KEY);
     setContent(DEFAULT_CONTENT);
+    saveContentToFirestore(DEFAULT_CONTENT).catch(() => {});
   };
 
   return (

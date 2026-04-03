@@ -2,16 +2,9 @@ import React, { useState } from 'react';
 import { useContent } from '../context/ContentContext';
 import { DitheringCard } from './ui/hero-dithering-card';
 import { ArrowRight, Loader2 } from 'lucide-react';
+import { addLead } from '../lib/firestoreDB';
 
 const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_CTA;
-
-function saveLead(lead) {
-  try {
-    const existing = JSON.parse(localStorage.getItem('syngular_leads') || '[]');
-    existing.push({ ...lead, id: crypto.randomUUID(), done: false });
-    localStorage.setItem('syngular_leads', JSON.stringify(existing));
-  } catch {}
-}
 
 const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
@@ -41,8 +34,8 @@ const InputField = ({ label, id, type = 'text', required, value, onChange, onBlu
       placeholder={placeholder}
       className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 outline-none transition-all duration-200 focus:ring-2 focus:ring-purple-500"
       style={{
-        background: 'rgba(255,255,255,0.06)',
-        border: `1px solid ${error ? 'rgba(239,68,68,0.6)' : 'rgba(168,85,247,0.2)'}`,
+        background: '#1A1A24', // Color sólido
+        border: `1px solid ${error ? 'rgba(239,68,68,0.6)' : 'rgba(168,85,247,0.3)'}`,
       }}
     />
     {error && <p className="text-xs text-red-400 mt-1">{error}</p>}
@@ -94,7 +87,7 @@ const CTA = () => {
       });
 
       if (res.ok) {
-        saveLead({ nombre: form.nombre, email: form.email, empresa: form.empresa, proceso: form.proceso, timestamp: new Date().toISOString() });
+        addLead({ nombre: form.nombre, email: form.email, empresa: form.empresa, proceso: form.proceso, timestamp: new Date().toISOString() }).catch(() => {});
         setStatus('success');
       } else {
         throw new Error(`HTTP ${res.status}`);
@@ -192,8 +185,8 @@ const CTA = () => {
                   placeholder="Ej: Gestión de leads, respuestas automáticas a clientes, integración entre CRM y facturación..."
                   className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 outline-none resize-none transition-all duration-200 focus:ring-2 focus:ring-purple-500"
                   style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: `1px solid ${errors.proceso ? 'rgba(239,68,68,0.6)' : 'rgba(168,85,247,0.2)'}`,
+                    background: '#1A1A24', // Color solido
+                    border: `1px solid ${errors.proceso ? 'rgba(239,68,68,0.6)' : 'rgba(168,85,247,0.3)'}`,
                   }}
                 />
                 {errors.proceso && <p className="text-xs text-red-400 mt-1">{errors.proceso}</p>}

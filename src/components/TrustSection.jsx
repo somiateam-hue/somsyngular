@@ -32,6 +32,30 @@ const pillars = [
   },
 ];
 
+const LOGOS = [
+  { text: 'TURNITO',     className: 'font-display font-black tracking-tight text-white/80' },
+  { text: 'DentistiQ',   className: 'font-serif font-black italic text-purple-400' },
+  { text: 'tallerPRO',   className: 'font-display font-black text-white/70' },
+  { text: 'IMANEVOLUTION', className: 'font-sans font-extrabold tracking-tighter text-white/80', highlight: 'EVOLUTION' },
+  { text: 'PHIWALLET',   className: 'font-mono font-bold text-white/60' },
+];
+
+function LogoItem({ logo }) {
+  if (logo.highlight) {
+    const parts = logo.text.split(logo.highlight);
+    return (
+      <span className={`text-3xl md:text-4xl ${logo.className} flex-shrink-0`}>
+        {parts[0]}<span style={{ color: '#A855F7' }}>{logo.highlight}</span>{parts[1]}
+      </span>
+    );
+  }
+  return (
+    <span className={`text-3xl md:text-4xl ${logo.className} flex-shrink-0`}>
+      {logo.text}
+    </span>
+  );
+}
+
 const TrustSection = () => {
   const sectionRef = useRef(null);
 
@@ -99,7 +123,37 @@ const TrustSection = () => {
           ))}
         </div>
 
+        {/* Client Logos Marquee — infinite loop */}
+        <div className="space-y-4">
+          <p className="text-sm text-text-secondary uppercase tracking-widest text-center font-medium">
+            Marcas que confían en nuestros sistemas
+          </p>
+
+          <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+            <div className="flex gap-16 marquee-track">
+              {[...LOGOS, ...LOGOS].map((logo, i) => (
+                <LogoItem key={i} logo={logo} />
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <style>{`
+        .marquee-track {
+          width: max-content;
+          animation: marquee-scroll 24s linear infinite;
+          align-items: center;
+        }
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
+        @keyframes marquee-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 };

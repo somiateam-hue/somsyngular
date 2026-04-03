@@ -14,6 +14,7 @@ import Proceso          from './components/Proceso';
 import Equipo        from './components/Equipo';
 import TrustSection  from './components/TrustSection';
 import CTA           from './components/CTA';
+import JarvisFeature   from './components/JarvisFeature';
 import Footer        from './components/Footer';
 import Chatbot       from './components/Chatbot';
 import GSAPEffects   from './components/GSAPEffects';
@@ -38,6 +39,7 @@ function PublicSite() {
         <Hero />
         <SocialProof />
         <Features />
+        <JarvisFeature />
         <ROICalculator />
         <Manifesto />
         <VideoShowcase />

@@ -1,24 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { saveChat } from '../lib/firestoreDB';
 
-const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_CHAT;
-
-const sessionId = typeof crypto !== 'undefined' && crypto.randomUUID
-  ? crypto.randomUUID()
-  : Math.random().toString(36).slice(2);
-
+const WEBHOOK_URL  = import.meta.env.VITE_WEBHOOK_CHAT;
+const sessionId    = crypto.randomUUID();
 const sessionStart = new Date().toISOString();
 
 function saveSession(messages) {
-  try {
-    const userHasMessages = messages.some(m => m.role === 'user');
-    if (!userHasMessages) return;
-    const existing = JSON.parse(localStorage.getItem('syngular_chats') || '[]');
-    const idx = existing.findIndex(s => s.id === sessionId);
-    const session = { id: sessionId, startTime: sessionStart, messages };
-    if (idx >= 0) existing[idx] = session;
-    else existing.push(session);
-    localStorage.setItem('syngular_chats', JSON.stringify(existing));
-  } catch {}
+  saveChat(sessionId, sessionStart, messages).catch(() => {});
 }
 
 const BotAvatar = () => (

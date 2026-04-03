@@ -1,47 +1,34 @@
-import { useState } from 'react';
-
-const STORAGE_KEY = 'syngular_portfolio';
-
-function load() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-  catch { return []; }
-}
-
-function persist(items) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-}
+import { useState, useEffect } from 'react';
+import {
+  subscribePortfolio, addPortfolioItem,
+  deletePortfolioItem, updatePortfolioItem,
+} from '../lib/firestoreDB';
 
 export function usePortfolio() {
-  const [items, setItems] = useState(load);
+  const [items,   setItems]   = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const add = (item) => {
-    const next = [
-      { ...item, id: crypto.randomUUID(), createdAt: new Date().toISOString() },
-      ...items,
-    ];
-    setItems(next);
-    persist(next);
+  useEffect(() => {
+    const unsub = subscribePortfolio(data => {
+      setItems(data);
+      setLoading(false);
+    });
+    return unsub;
+  }, []);
+
+  return {
+    items,
+    loading,
+    add:    addPortfolioItem,
+    remove: deletePortfolioItem,
+    update: updatePortfolioItem,
   };
-
-  const remove = (id) => {
-    const next = items.filter(i => i.id !== id);
-    setItems(next);
-    persist(next);
-  };
-
-  const update = (id, fields) => {
-    const next = items.map(i => i.id === id ? { ...i, ...fields } : i);
-    setItems(next);
-    persist(next);
-  };
-
-  return { items, add, remove, update };
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 export function getYouTubeId(url) {
-  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&\n?#]+)/);
+  const m = url?.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&\n?#]+)/);
   return m ? m[1] : null;
 }
 
@@ -55,8 +42,8 @@ export function getThumbnail(item) {
 }
 
 export const TYPE_META = {
-  imagen:  { label: 'Imagen',   color: '#A855F7' },
-  video:   { label: 'Vídeo',    color: '#3B82F6' },
-  reel:    { label: 'Reel',     color: '#EC4899' },
-  anuncio: { label: 'Anuncio',  color: '#10B981' },
+  imagen:  { label: 'Imagen',  color: '#A855F7' },
+  video:   { label: 'Vídeo',   color: '#3B82F6' },
+  reel:    { label: 'Reel',    color: '#EC4899' },
+  anuncio: { label: 'Anuncio', color: '#10B981' },
 };

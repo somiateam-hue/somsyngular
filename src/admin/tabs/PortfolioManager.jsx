@@ -61,8 +61,8 @@ function AddForm({ onSave, onCancel }) {
   const handleFile = async (e, field) => {
     const file = e.target.files[0];
     if (!file) return;
-    if (file.size > 3 * 1024 * 1024) {
-      setError('La imagen supera 3 MB. Usa una URL en su lugar.');
+    if (file.size > 800 * 1024) {
+      setError('La imagen supera 800 KB (límite para bases de datos gratuitas). Comprímela o usa una URL directa.');
       e.target.value = '';
       return;
     }

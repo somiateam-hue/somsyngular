@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 import Overview from './tabs/Overview';
 import Leads from './tabs/Leads';
 import ChatHistory from './tabs/ChatHistory';
 import ContentEditor from './tabs/ContentEditor';
 import PortfolioManager from './tabs/PortfolioManager';
+import MeetingsManager from './tabs/MeetingsManager';
 import Settings from './tabs/Settings';
 
 const NAV = [
   { id: 'overview',   label: 'Overview',             icon: '📊' },
   { id: 'leads',      label: 'Leads',                icon: '📋' },
   { id: 'chats',      label: 'Chat History',         icon: '💬' },
+  { id: 'meetings',   label: 'Agenda Citas',         icon: '🗓️' },
   { id: 'editor',     label: 'Editor de Contenido',  icon: '✏️' },
   { id: 'portfolio',  label: 'Portafolio IA',        icon: '🎨' },
   { id: 'settings',   label: 'Ajustes',              icon: '⚙️' },
@@ -22,11 +25,11 @@ export default function AdminLayout() {
   const navigate = useNavigate();
 
   const logout = () => {
-    sessionStorage.removeItem('syngular_admin');
+    supabase.auth.signOut();
     navigate('/admin');
   };
 
-  const TABS = { overview: Overview, leads: Leads, chats: ChatHistory, editor: ContentEditor, portfolio: PortfolioManager, settings: Settings };
+  const TABS = { overview: Overview, leads: Leads, chats: ChatHistory, meetings: MeetingsManager, editor: ContentEditor, portfolio: PortfolioManager, settings: Settings };
   const TabComponent = TABS[active];
 
   return (

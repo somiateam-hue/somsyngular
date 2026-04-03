@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { useLocalStore } from '../../hooks/useLocalStore';
+import React, { useState, useEffect } from 'react';
+import { subscribeChats } from '../../lib/firestoreDB';
 
 export default function ChatHistory() {
-  const [chatSessions] = useLocalStore('syngular_chats', []);
-  const [expanded, setExpanded] = useState(null);
+  const [chatSessions, setChatSessions] = useState([]);
+  const [expanded, setExpanded]         = useState(null);
 
-  const sorted = [...chatSessions].reverse();
+  useEffect(() => {
+    const unsub = subscribeChats(setChatSessions);
+    return unsub;
+  }, []);
+
+  const sorted = chatSessions;
 
   if (sorted.length === 0) {
     return (

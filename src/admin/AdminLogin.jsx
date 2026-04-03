@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const ADMIN_USER = import.meta.env.VITE_ADMIN_USER || 'admin';
-const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASS || 'Syngular2025!';
+import { supabase } from '../lib/supabase';
 
 export default function AdminLogin() {
-  const [form, setForm] = useState({ user: '', pass: '' });
-  const [error, setError] = useState('');
+  const [form, setForm]       = useState({ email: '', pass: '' });
+  const [error, setError]     = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -14,13 +12,14 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    // Simulate a brief loading state for UX
-    await new Promise(r => setTimeout(r, 600));
-    if (form.user === ADMIN_USER && form.pass === ADMIN_PASS) {
-      sessionStorage.setItem('syngular_admin', 'true');
-      navigate('/admin/dashboard');
-    } else {
+    const { error: err } = await supabase.auth.signInWithPassword({
+      email:    form.email,
+      password: form.pass,
+    });
+    if (err) {
       setError('Credenciales incorrectas. Inténtalo de nuevo.');
+    } else {
+      navigate('/admin/dashboard');
     }
     setLoading(false);
   };
@@ -52,20 +51,16 @@ export default function AdminLogin() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1.5">
               <label className="block text-sm font-medium" style={{ color: 'rgba(245,245,255,0.7)' }}>
-                Usuario
+                Email
               </label>
               <input
-                type="text"
-                autoComplete="username"
-                value={form.user}
-                onChange={e => setForm(f => ({ ...f, user: e.target.value }))}
-                placeholder="admin"
-                className="w-full px-4 py-3 rounded-xl text-sm text-white outline-none transition-all duration-200 focus:ring-2"
-                style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(168,85,247,0.2)',
-                  focusRingColor: '#A855F7',
-                }}
+                type="email"
+                autoComplete="email"
+                value={form.email}
+                onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                placeholder="admin@somsyngular.com"
+                className="w-full px-4 py-3 rounded-xl text-sm text-white outline-none transition-all duration-200 focus:ring-2 focus:ring-purple-500"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(168,85,247,0.2)' }}
               />
             </div>
 
@@ -79,11 +74,8 @@ export default function AdminLogin() {
                 value={form.pass}
                 onChange={e => setForm(f => ({ ...f, pass: e.target.value }))}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 rounded-xl text-sm text-white outline-none transition-all duration-200 focus:ring-2"
-                style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(168,85,247,0.2)',
-                }}
+                className="w-full px-4 py-3 rounded-xl text-sm text-white outline-none transition-all duration-200 focus:ring-2 focus:ring-purple-500"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(168,85,247,0.2)' }}
               />
             </div>
 
