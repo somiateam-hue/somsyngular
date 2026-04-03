@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const WEBHOOK_URL = 'https://n8n.srv1119749.hstgr.cloud/webhook/845ded30-928e-4bf0-9498-4e4ebaf4d6b8';
+const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_CHAT;
 
 const sessionId = typeof crypto !== 'undefined' && crypto.randomUUID
   ? crypto.randomUUID()

@@ -34,22 +34,25 @@ const DEFAULT_CONTENT = {
     subtitle: 'Un equipo multidisciplinario de ingenieros, diseñadores y estrategas de IA.',
     members: [
       {
-        name: 'Alex Rivera',
-        role: 'Arquitecto de Automatización',
-        desc: 'Experto en optimización de flujos de trabajo empresariales y backend escalable.',
-        img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
+        name: 'Oussama',
+        role: 'Co-Founder & Tech Lead',
+        desc: 'Arquitecto de sistemas IA y responsable de la ejecución técnica. Especializado en automatización de procesos complejos e integraciones empresariales.',
+        img: '/OUSSAMA.png',
+        linkedin: 'https://linkedin.com',
       },
       {
-        name: 'Elena Soler',
-        role: 'Especialista IA',
-        desc: 'Diseñadora de modelos de lenguaje y agentes autónomos para servicios dinámicos.',
-        img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400',
+        name: 'Ayoub',
+        role: 'Co-Founder & AI Architect',
+        desc: 'Experto en modelos de lenguaje y automatización inteligente. Diseña los flujos que convierten datos en decisiones autónomas.',
+        img: '/AYOUB.png',
+        linkedin: 'https://linkedin.com',
       },
       {
-        name: 'Marcus Chen',
-        role: 'Ingeniero de Sistemas',
-        desc: 'Integrador de APIs complejas y arquitecturas cloud de alta disponibilidad.',
-        img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400',
+        name: 'Sanae',
+        role: 'Co-Founder & Growth Lead',
+        desc: 'Estratega de crecimiento y relaciones con clientes. Asegura que cada implementación genere impacto real en el negocio.',
+        img: '/SANAE.png',
+        linkedin: 'https://linkedin.com',
       },
     ],
   },
@@ -73,7 +76,7 @@ const DEFAULT_CONTENT = {
   },
 };
 
-const STORAGE_KEY = 'syngular_content';
+const STORAGE_KEY = 'syngular_content_v5';
 const ContentContext = createContext(null);
 
 export function ContentProvider({ children }) {

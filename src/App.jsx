@@ -8,8 +8,11 @@ import SocialProof   from './components/SocialProof';
 import Features      from './components/Features';
 import ROICalculator from './components/ROICalculator';
 import Manifesto     from './components/Manifesto';
-import Proceso       from './components/Proceso';
+import VideoShowcase    from './components/VideoShowcase';
+import PortfolioSection from './components/PortfolioSection';
+import Proceso          from './components/Proceso';
 import Equipo        from './components/Equipo';
+import TrustSection  from './components/TrustSection';
 import CTA           from './components/CTA';
 import Footer        from './components/Footer';
 import Chatbot       from './components/Chatbot';
@@ -37,8 +40,11 @@ function PublicSite() {
         <Features />
         <ROICalculator />
         <Manifesto />
+        <VideoShowcase />
+        <PortfolioSection />
         <Proceso />
         <Equipo />
+        <TrustSection />
         <CTA />
       </main>
       <Footer />

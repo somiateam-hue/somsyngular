@@ -4,14 +4,16 @@ import Overview from './tabs/Overview';
 import Leads from './tabs/Leads';
 import ChatHistory from './tabs/ChatHistory';
 import ContentEditor from './tabs/ContentEditor';
+import PortfolioManager from './tabs/PortfolioManager';
 import Settings from './tabs/Settings';
 
 const NAV = [
-  { id: 'overview', label: 'Overview', icon: '📊' },
-  { id: 'leads', label: 'Leads', icon: '📋' },
-  { id: 'chats', label: 'Chat History', icon: '💬' },
-  { id: 'editor', label: 'Editor de Contenido', icon: '✏️' },
-  { id: 'settings', label: 'Ajustes', icon: '⚙️' },
+  { id: 'overview',   label: 'Overview',             icon: '📊' },
+  { id: 'leads',      label: 'Leads',                icon: '📋' },
+  { id: 'chats',      label: 'Chat History',         icon: '💬' },
+  { id: 'editor',     label: 'Editor de Contenido',  icon: '✏️' },
+  { id: 'portfolio',  label: 'Portafolio IA',        icon: '🎨' },
+  { id: 'settings',   label: 'Ajustes',              icon: '⚙️' },
 ];
 
 export default function AdminLayout() {
@@ -24,7 +26,7 @@ export default function AdminLayout() {
     navigate('/admin');
   };
 
-  const TABS = { overview: Overview, leads: Leads, chats: ChatHistory, editor: ContentEditor, settings: Settings };
+  const TABS = { overview: Overview, leads: Leads, chats: ChatHistory, editor: ContentEditor, portfolio: PortfolioManager, settings: Settings };
   const TabComponent = TABS[active];
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Linkedin } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +43,19 @@ const Equipo = () => {
               <h3 className="text-xl font-display font-bold">{member.name}</h3>
               <p className="text-accent-neon text-sm font-medium">{member.role}</p>
               <p className="text-text-secondary text-sm pt-4 leading-relaxed">{member.desc}</p>
+              {member.linkedin && (
+                <div className="pt-4">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-text-secondary hover:text-accent-neon transition-colors"
+                  >
+                    <Linkedin size={14} />
+                    LinkedIn
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         ))}

@@ -38,14 +38,14 @@ const Footer = () => (
       },
     ]}
     leftLinks={[
-      { href: '#', label: 'Privacidad' },
-      { href: '#', label: 'Términos' },
-      { href: '#', label: 'Cookies' },
-    ]}
-    rightLinks={[
       { href: '#casos',    label: 'Casos de Éxito' },
       { href: '#proceso',  label: 'Proceso' },
       { href: '#contacto', label: 'Contacto' },
+    ]}
+    rightLinks={[
+      { href: '#', label: 'Privacidad' },
+      { href: '#', label: 'Términos' },
+      { href: '#', label: 'Cookies' },
     ]}
     copyrightText={`SOM SYNGULAR ${new Date().getFullYear()}. Todos los derechos reservados.`}
     barCount={23}

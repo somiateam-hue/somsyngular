@@ -6,9 +6,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const GSAPEffects = () => {
   useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const magneticCleanups = [];
 
     const ctx = gsap.context(() => {
+      if (prefersReduced) return;
       // ── 1. Scroll Progress Bar ─────────────────────────────────────────────
       gsap.to('#scroll-progress', {
         scaleX: 1,

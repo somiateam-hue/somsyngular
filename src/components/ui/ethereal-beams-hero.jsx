@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, Suspense } from "react";
+import React, { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, Suspense, useState } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
@@ -52,15 +52,29 @@ function extendMaterial(BaseMaterial, cfg) {
   return mat;
 }
 
-const CanvasWrapper = ({ children }) => (
-  <div className="w-full h-full relative">
-    <Suspense fallback={<div className="absolute inset-0 bg-[#0B0B12]" />}>
-      <Canvas dpr={[1, 1.5]} frameloop="always" className="w-full h-full relative">
-        {children}
-      </Canvas>
-    </Suspense>
-  </div>
-);
+const CanvasWrapper = ({ children }) => {
+  const wrapperRef = useRef(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    if (wrapperRef.current) observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={wrapperRef} className="w-full h-full relative">
+      <Suspense fallback={<div className="absolute inset-0 bg-[#0B0B12]" />}>
+        <Canvas dpr={[1, 1]} frameloop={inView ? "always" : "never"} className="w-full h-full relative">
+          {children}
+        </Canvas>
+      </Suspense>
+    </div>
+  );
+};
 
 const hexToNormalizedRGB = (hex) => {
   const clean = hex.replace("#", "");
@@ -309,7 +323,7 @@ export default function EtherealBeamsHero() {
         <Beams
           beamWidth={2.5}
           beamHeight={18}
-          beamNumber={15}
+          beamNumber={10}
           lightColor="#A855F7"
           speed={2.5}
           noiseIntensity={2}
